@@ -1,0 +1,134 @@
+{
+  "sessionId": "session-1779786961305",
+  "uploadedFile": "collection-1779786961303.json",
+  "collection": {
+    "info": {
+      "_postman_id": "54f3ae35-8ad8-4af1-836d-98f42cda2a81",
+      "name": "Dummy Testing",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+      "_exporter_id": "3953719"
+    },
+    "item": [
+      {
+        "name": "Products",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "https://dummyjson.com/products",
+            "protocol": "https",
+            "host": [
+              "dummyjson",
+              "com"
+            ],
+            "path": [
+              "products"
+            ]
+          }
+        },
+        "response": []
+      },
+      {
+        "name": "New Request",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n  \"title\": \"iPhone 20\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "https://dummyjson.com/products/add",
+            "protocol": "https",
+            "host": [
+              "dummyjson",
+              "com"
+            ],
+            "path": [
+              "products",
+              "add"
+            ]
+          }
+        },
+        "response": []
+      }
+    ]
+  },
+  "apis": [
+    {
+      "id": "api-1779786961305-0.11884875542562923",
+      "name": "Products",
+      "description": "Products",
+      "url": "https://dummyjson.com/products",
+      "method": "GET",
+      "headers": {},
+      "body": "",
+      "auth": null,
+      "originalItem": {
+        "name": "Products",
+        "request": {
+          "method": "GET",
+          "header": [],
+          "url": {
+            "raw": "https://dummyjson.com/products",
+            "protocol": "https",
+            "host": [
+              "dummyjson",
+              "com"
+            ],
+            "path": [
+              "products"
+            ]
+          }
+        },
+        "response": []
+      }
+    },
+    {
+      "id": "api-1779786961305-0.23308329356261226",
+      "name": "New Request",
+      "description": "New Request",
+      "url": "https://dummyjson.com/products/add",
+      "method": "POST",
+      "headers": {},
+      "body": "{\r\n  \"title\": \"iPhone 20\"\r\n}",
+      "auth": null,
+      "originalItem": {
+        "name": "New Request",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n  \"title\": \"iPhone 20\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "https://dummyjson.com/products/add",
+            "protocol": "https",
+            "host": [
+              "dummyjson",
+              "com"
+            ],
+            "path": [
+              "products",
+              "add"
+            ]
+          }
+        },
+        "response": []
+      }
+    }
+  ],
+  "uploadedAt": "2026-05-26T09:16:01.305Z",
+  "totalApis": 2
+}

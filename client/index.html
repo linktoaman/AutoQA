@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoQA - Simple API Testing</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🤖 AutoQA</h1>
+                <p>Simple AI-Powered API Testing</p>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Step 1: Upload Section -->
+            <section class="step" id="uploadSection">
+                <h2 class="step-title">📤 Step 1: Upload Postman Collection</h2>
+                <p class="step-description">
+                    Upload a Postman collection JSON file to start testing your APIs.
+                </p>
+
+                <div class="upload-area" id="uploadArea">
+                    <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                        <polyline points="17 8 12 3 7 8"></polyline>
+                        <line x1="12" y1="3" x2="12" y2="15"></line>
+                    </svg>
+                    <p class="upload-text">Drag and drop your Postman collection here</p>
+                    <p class="upload-or">or</p>
+                    <input
+                        type="file"
+                        id="fileInput"
+                        class="file-input"
+                        accept=".json"
+                        aria-label="Upload Postman collection"
+                    />
+                    <button class="upload-button" id="chooseFileBtn">Choose File</button>
+                </div>
+
+                <div id="uploadStatus"></div>
+                <div id="apiList" class="api-list"></div>
+
+                <button class="btn btn-primary" id="runTestsBtn" disabled>
+                    ▶️ Run Tests
+                </button>
+            </section>
+
+            <!-- Step 2: Testing Section -->
+            <section class="step" id="testingSection" style="display: none;">
+                <h2 class="step-title">⚙️ Step 2: Testing in Progress</h2>
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <p class="progress-text" id="progressText">Preparing tests...</p>
+                </div>
+
+                <div class="logs-container">
+                    <h3>📋 Test Logs</h3>
+                    <div class="logs" id="logs"></div>
+                </div>
+            </section>
+
+            <!-- Step 3: Results Section -->
+            <section class="step" id="resultsSection" style="display: none;">
+                <h2 class="step-title">✅ Step 3: Results</h2>
+
+                <div class="results-summary">
+                    <div class="result-stat">
+                        <div class="stat-value" id="totalTests">0</div>
+                        <div class="stat-label">Total Tests</div>
+                    </div>
+                    <div class="result-stat success">
+                        <div class="stat-value" id="passedTests">0</div>
+                        <div class="stat-label">Passed</div>
+                    </div>
+                    <div class="result-stat error">
+                        <div class="stat-value" id="failedTests">0</div>
+                        <div class="stat-label">Failed</div>
+                    </div>
+                    <div class="result-stat">
+                        <div class="stat-value" id="passRate">0%</div>
+                        <div class="stat-label">Pass Rate</div>
+                    </div>
+                </div>
+
+                <div class="result-actions">
+                    <button class="btn btn-success" id="viewReportBtn">
+                        📊 View Detailed Report
+                    </button>
+                    <button class="btn btn-secondary" id="newTestBtn">
+                        🔄 Run New Test
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>AutoQA v1.0 | Local AI-powered API Testing | Powered by Ollama & Node.js</p>
+        </footer>
+    </div>
+
+    <!-- Hidden Report Window -->
+    <div id="reportWindow" class="report-window" style="display: none;">
+        <div class="report-modal">
+            <div class="report-modal-header">
+                <button class="close-btn" id="closeReportBtn">✕</button>
+
+    <!-- Script -->
+    <script src="app.js"></script>
+</body>
+</html>

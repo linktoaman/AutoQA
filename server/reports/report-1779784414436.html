@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AutoQA Test Report</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f4f7fb; color: #1f2937; }
+    .container { max-width: 1180px; margin: 0 auto; padding: 28px; }
+    .header { background: #1d4ed8; color: white; border-radius: 12px; padding: 28px; }
+    .header h1 { margin: 0 0 10px; font-size: 2rem; }
+    .header p { margin: 0; opacity: 0.85; }
+    .summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 22px; }
+    .metric { background: white; border-radius: 12px; padding: 18px 20px; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08); }
+    .metric h2 { margin: 0 0 6px; font-size: 1.8rem; }
+    .metric p { margin: 0; color: #475569; }
+    .api-section { margin-top: 22px; background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06); }
+    .api-header { display: flex; justify-content: space-between; flex-wrap: wrap; align-items: center; gap: 12px; padding: 18px 22px; background: #f8fafc; border-bottom: 1px solid #e2e8f0; }
+    .api-name { font-weight: 700; font-size: 1.05rem; }
+    .api-meta { color: #475569; margin-top: 4px; }
+    .api-summary { color: #1d4ed8; font-weight: 700; }
+    .test-result { border-top: 1px solid #e2e8f0; }
+    .test-header { display: flex; justify-content: space-between; align-items: center; padding: 18px 22px; cursor: pointer; transition: background 0.2s ease; }
+    .test-header:hover { background: #f8fafc; }
+    .test-status { display: flex; align-items: center; gap: 12px; }
+    .status-badge { padding: 6px 12px; border-radius: 9999px; color: white; font-size: 0.84rem; }
+    .status-passed { background: #16a34a; }
+    .status-failed { background: #dc2626; }
+    .status-error { background: #d97706; }
+    .response-time { color: #475569; }
+    .test-details { display: none; padding: 0 22px 22px; background: #f8fafc; }
+    .detail-row { margin-bottom: 16px; }
+    .detail-row strong { display: block; margin-bottom: 6px; }
+    pre { margin: 0; padding: 14px; border-radius: 10px; background: #eef2ff; color: #0f172a; overflow-x: auto; white-space: pre-wrap; word-break: break-word; }
+    .footer { margin-top: 28px; font-size: 0.95rem; color: #64748b; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>AutoQA Test Report</h1>
+      <p>Generated: 2026-05-26T08:33:19.101Z</p>
+      <div class="summary">
+        <div class="metric"><h2>5</h2><p>Total tests</p></div>
+        <div class="metric"><h2>0</h2><p>Passed</p></div>
+        <div class="metric"><h2>5</h2><p>Failed</p></div>
+        <div class="metric"><h2>0%</h2><p>Pass rate</p></div>
+      </div>
+    </div>
+    
+    <div class="api-section">
+      <div class="api-header">
+        <div>
+          <div class="api-name">https://dummyjson.com/auth/login</div>
+          <div class="api-meta">POST https://dummyjson.com/auth/login</div>
+        </div>
+        <div class="api-summary">0/5 passed</div>
+      </div>
+      
+    <div class="test-result">
+      <div class="test-header">
+        <div>
+          <div class="test-type">Positive Test</div>
+          <div class="test-description">Test successful API call with valid parameters</div>
+        </div>
+        <div class="test-status">
+          <span class="status-badge status-failed">FAILED</span>
+          <span class="response-time">654ms</span>
+        </div>
+      </div>
+      <div class="test-details" id="test-0-0">
+        <div class="detail-row"><strong>Request:</strong> POST https://dummyjson.com/auth/login</div>
+        <div class="detail-row"><strong>Request Headers:</strong><pre>{}</pre></div>
+        <div class="detail-row"><strong>Request Body:</strong><pre>{
+  "username": "emilys",
+  "password": "emilyspass"
+}</pre></div>
+        <div class="detail-row"><strong>Response Status:</strong> 400</div>
+        <div class="detail-row"><strong>Response Headers:</strong><pre>{
+  "date": "Tue, 26 May 2026 08:33:15 GMT",
+  "content-type": "application/json; charset=utf-8",
+  "content-length": "44",
+  "connection": "keep-alive",
+  "access-control-allow-credentials": "true",
+  "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+  "strict-transport-security": "max-age=15552000; includeSubDomains",
+  "vary": "Origin, Accept-Encoding",
+  "x-content-type-options": "nosniff",
+  "x-dns-prefetch-control": "off",
+  "x-download-options": "noopen",
+  "x-frame-options": "SAMEORIGIN",
+  "x-ratelimit-limit": "100",
+  "x-ratelimit-remaining": "99",
+  "x-ratelimit-reset": "1779784404",
+  "x-xss-protection": "1; mode=block",
+  "cf-cache-status": "DYNAMIC",
+  "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+  "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=C4ZPdVSDAmQS%2B6MLaO1u4SEda6vVq1I%2Fi5bUjoj6ZBOtrZP5L3D0x95sz1aWPYbuLT18MzEVmUyi6pKzxmuB5aTQD8HAvWCvqBxhYJ0CUyZYj5WnWDWnrX1MSHiUeFa3\"}]}",
+  "server": "cloudflare",
+  "cf-ray": "a01b6f16ca7c0550-SIN"
+}</pre></div>
+        <div class="detail-row"><strong>Response Body:</strong><pre>{
+  "message": "Username and password required"
+}</pre></div>
+        <div class="detail-row"><strong>Outcome:</strong> FAIL</div>
+      </div>
+    </div>
+  
+    <div class="test-result">
+      <div class="test-header">
+        <div>
+          <div class="test-type">Negative Test</div>
+          <div class="test-description">Test API call with invalid parameters</div>
+        </div>
+        <div class="test-status">
+          <span class="status-badge status-failed">FAILED</span>
+          <span class="response-time">265ms</span>
+        </div>
+      </div>
+      <div class="test-details" id="test-0-1">
+        <div class="detail-row"><strong>Request:</strong> POST https://dummyjson.com/auth/login</div>
+        <div class="detail-row"><strong>Request Headers:</strong><pre>{}</pre></div>
+        <div class="detail-row"><strong>Request Body:</strong><pre>{}</pre></div>
+        <div class="detail-row"><strong>Response Status:</strong> 400</div>
+        <div class="detail-row"><strong>Response Headers:</strong><pre>{
+  "date": "Tue, 26 May 2026 08:33:16 GMT",
+  "content-type": "application/json; charset=utf-8",
+  "content-length": "44",
+  "connection": "keep-alive",
+  "access-control-allow-credentials": "true",
+  "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+  "strict-transport-security": "max-age=15552000; includeSubDomains",
+  "vary": "Origin, Accept-Encoding",
+  "x-content-type-options": "nosniff",
+  "x-dns-prefetch-control": "off",
+  "x-download-options": "noopen",
+  "x-frame-options": "SAMEORIGIN",
+  "x-ratelimit-limit": "100",
+  "x-ratelimit-remaining": "98",
+  "x-ratelimit-reset": "1779784404",
+  "x-xss-protection": "1; mode=block",
+  "cf-cache-status": "DYNAMIC",
+  "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+  "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=85PnGfYfzGIRG2AWE6serwRk8iOn%2FsjLSxp11BjZsxl5M%2BqvmqH1Nir2puZLkg0X5sOf3swEkQ1ihjuL8%2FMJVJK3fwjV4V%2FI0J%2FdKwEtdMHl1vB5TkeA4nHJBRbK1jRp\"}]}",
+  "server": "cloudflare",
+  "cf-ray": "a01b6f1b98730550-SIN"
+}</pre></div>
+        <div class="detail-row"><strong>Response Body:</strong><pre>{
+  "message": "Username and password required"
+}</pre></div>
+        <div class="detail-row"><strong>Outcome:</strong> FAIL</div>
+      </div>
+    </div>
+  
+    <div class="test-result">
+      <div class="test-header">
+        <div>
+          <div class="test-type">Invalid Payload</div>
+          <div class="test-description">Test API with malformed request body</div>
+        </div>
+        <div class="test-status">
+          <span class="status-badge status-failed">FAILED</span>
+          <span class="response-time">253ms</span>
+        </div>
+      </div>
+      <div class="test-details" id="test-0-2">
+        <div class="detail-row"><strong>Request:</strong> POST https://dummyjson.com/auth/login</div>
+        <div class="detail-row"><strong>Request Headers:</strong><pre>{
+  "Content-Type": "application/json"
+}</pre></div>
+        <div class="detail-row"><strong>Request Body:</strong><pre>{ invalid json }</pre></div>
+        <div class="detail-row"><strong>Response Status:</strong> 400</div>
+        <div class="detail-row"><strong>Response Headers:</strong><pre>{
+  "date": "Tue, 26 May 2026 08:33:17 GMT",
+  "content-type": "application/json; charset=utf-8",
+  "content-length": "79",
+  "connection": "keep-alive",
+  "access-control-allow-credentials": "true",
+  "etag": "W/\"4f-5FTE7AtYcNJv94lncq1sftEUz4Y\"",
+  "strict-transport-security": "max-age=15552000; includeSubDomains",
+  "vary": "Origin, Accept-Encoding",
+  "x-content-type-options": "nosniff",
+  "x-dns-prefetch-control": "off",
+  "x-download-options": "noopen",
+  "x-frame-options": "SAMEORIGIN",
+  "x-ratelimit-limit": "100",
+  "x-ratelimit-remaining": "96",
+  "x-ratelimit-reset": "1779784404",
+  "x-xss-protection": "1; mode=block",
+  "cf-cache-status": "DYNAMIC",
+  "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+  "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=MYo2N7FxYDjAs2V9E97aM13sZx3wPBUMMZWuEgwzXNlZZNTwms5PW2g4khh826Ob0lotvlSmF05PTXyoEyW%2F4gK38E8aMEvarUEVjjktg%2FX8nPegzp7t6iBY618W%2FjRi\"}]}",
+  "server": "cloudflare",
+  "cf-ray": "a01b6f207e1d0550-SIN"
+}</pre></div>
+        <div class="detail-row"><strong>Response Body:</strong><pre>{
+  "message": "Unexpected token '\"', \"\"{ invalid json }\"\" is not valid JSON"
+}</pre></div>
+        <div class="detail-row"><strong>Outcome:</strong> FAIL</div>
+      </div>
+    </div>
+  
+    <div class="test-result">
+      <div class="test-header">
+        <div>
+          <div class="test-type">Auth Failure</div>
+          <div class="test-description">Test API without proper authentication</div>
+        </div>
+        <div class="test-status">
+          <span class="status-badge status-failed">FAILED</span>
+          <span class="response-time">260ms</span>
+        </div>
+      </div>
+      <div class="test-details" id="test-0-3">
+        <div class="detail-row"><strong>Request:</strong> POST https://dummyjson.com/auth/login</div>
+        <div class="detail-row"><strong>Request Headers:</strong><pre>{}</pre></div>
+        <div class="detail-row"><strong>Request Body:</strong><pre>No request body sent</pre></div>
+        <div class="detail-row"><strong>Response Status:</strong> 400</div>
+        <div class="detail-row"><strong>Response Headers:</strong><pre>{
+  "date": "Tue, 26 May 2026 08:33:17 GMT",
+  "content-type": "application/json; charset=utf-8",
+  "content-length": "44",
+  "connection": "keep-alive",
+  "access-control-allow-credentials": "true",
+  "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+  "strict-transport-security": "max-age=15552000; includeSubDomains",
+  "vary": "Origin, Accept-Encoding",
+  "x-content-type-options": "nosniff",
+  "x-dns-prefetch-control": "off",
+  "x-download-options": "noopen",
+  "x-frame-options": "SAMEORIGIN",
+  "x-ratelimit-limit": "100",
+  "x-ratelimit-remaining": "95",
+  "x-ratelimit-reset": "1779784404",
+  "x-xss-protection": "1; mode=block",
+  "cf-cache-status": "DYNAMIC",
+  "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+  "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=plptWtpI%2F%2Bjd%2Bqg6vSDEWt8ppFvpb8Zo3Y13DZ3OjLNgJuXh52itRXrNSjYV6NUEtxb%2Fmv4opCo%2BiALsc6DACpvkyeqn5WBx03UmiCfQkP6%2F0nWzc3v02AltlxMVw7lX\"}]}",
+  "server": "cloudflare",
+  "cf-ray": "a01b6f253aef0550-SIN"
+}</pre></div>
+        <div class="detail-row"><strong>Response Body:</strong><pre>{
+  "message": "Username and password required"
+}</pre></div>
+        <div class="detail-row"><strong>Outcome:</strong> FAIL</div>
+      </div>
+    </div>
+  
+    <div class="test-result">
+      <div class="test-header">
+        <div>
+          <div class="test-type">Status Code Validation</div>
+          <div class="test-description">Verify correct status codes are returned</div>
+        </div>
+        <div class="test-status">
+          <span class="status-badge status-failed">FAILED</span>
+          <span class="response-time">248ms</span>
+        </div>
+      </div>
+      <div class="test-details" id="test-0-4">
+        <div class="detail-row"><strong>Request:</strong> POST https://dummyjson.com/auth/login</div>
+        <div class="detail-row"><strong>Request Headers:</strong><pre>{}</pre></div>
+        <div class="detail-row"><strong>Request Body:</strong><pre>{
+  "username": "emilys",
+  "password": "emilyspass"
+}</pre></div>
+        <div class="detail-row"><strong>Response Status:</strong> 400</div>
+        <div class="detail-row"><strong>Response Headers:</strong><pre>{
+  "date": "Tue, 26 May 2026 08:33:18 GMT",
+  "content-type": "application/json; charset=utf-8",
+  "content-length": "44",
+  "connection": "keep-alive",
+  "access-control-allow-credentials": "true",
+  "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+  "strict-transport-security": "max-age=15552000; includeSubDomains",
+  "vary": "Origin, Accept-Encoding",
+  "x-content-type-options": "nosniff",
+  "x-dns-prefetch-control": "off",
+  "x-download-options": "noopen",
+  "x-frame-options": "SAMEORIGIN",
+  "x-ratelimit-limit": "100",
+  "x-ratelimit-remaining": "94",
+  "x-ratelimit-reset": "1779784404",
+  "x-xss-protection": "1; mode=block",
+  "cf-cache-status": "DYNAMIC",
+  "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+  "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=eEXYurUDtB3vIf0xQrA%2B0s%2FJVHoqChv5VIqhhdXycv32m8b5NSVVn3oBOPA3Fb5SBNrwjbUsEU0DjVC13dbU4CxF6jwvyRLMi3cN2C2IGk7O%2BdbgpsrfhKun16456S0Z\"}]}",
+  "server": "cloudflare",
+  "cf-ray": "a01b6f29ff710550-SIN"
+}</pre></div>
+        <div class="detail-row"><strong>Response Body:</strong><pre>{
+  "message": "Username and password required"
+}</pre></div>
+        <div class="detail-row"><strong>Outcome:</strong> FAIL</div>
+      </div>
+    </div>
+  
+    </div>
+  
+    <div class="footer">Report generated by AutoQA</div>
+  </div>
+  <script>
+    document.querySelectorAll('.test-header').forEach((header) => {
+      header.addEventListener('click', () => {
+        const details = header.nextElementSibling;
+        if (details) {
+          details.style.display = details.style.display === 'block' ? 'none' : 'block';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

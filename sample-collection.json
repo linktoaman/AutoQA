@@ -1,0 +1,202 @@
+{
+  "info": {
+    "_postman_id": "sample-collection",
+    "name": "Sample API Testing Collection",
+    "description": "Sample Postman collection for testing AutoQA. This collection contains examples of different API types.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Public APIs",
+      "description": "Free public APIs that don't require authentication",
+      "item": [
+        {
+          "name": "Get Random User",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://randomuser.me/api/",
+              "protocol": "https",
+              "host": ["randomuser", "me"],
+              "path": ["api", ""]
+            },
+            "description": "Gets a random user from the Random User Generator API"
+          }
+        },
+        {
+          "name": "Get Multiple Random Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://randomuser.me/api/?results=10",
+              "protocol": "https",
+              "host": ["randomuser", "me"],
+              "path": ["api", ""],
+              "query": [
+                {
+                  "key": "results",
+                  "value": "10"
+                }
+              ]
+            },
+            "description": "Gets 10 random users"
+          }
+        },
+        {
+          "name": "JSONPlaceholder - Get All Posts",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["posts"]
+            },
+            "description": "Gets all posts from JSONPlaceholder API"
+          }
+        },
+        {
+          "name": "JSONPlaceholder - Get Single Post",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/1",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["posts", "1"]
+            },
+            "description": "Gets a single post by ID"
+          }
+        },
+        {
+          "name": "JSONPlaceholder - Create Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Test Post\",\n  \"body\": \"This is a test post created by AutoQA\",\n  \"userId\": 1\n}"
+            },
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["posts"]
+            },
+            "description": "Creates a new post"
+          }
+        },
+        {
+          "name": "JSONPlaceholder - Update Post",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": 1,\n  \"title\": \"Updated Post Title\",\n  \"body\": \"Updated post body\",\n  \"userId\": 1\n}"
+            },
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/1",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["posts", "1"]
+            },
+            "description": "Updates an existing post"
+          }
+        },
+        {
+          "name": "JSONPlaceholder - Delete Post",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/posts/1",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["posts", "1"]
+            },
+            "description": "Deletes a post"
+          }
+        },
+        {
+          "name": "JSONPlaceholder - Get Comments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/comments",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["comments"]
+            },
+            "description": "Gets all comments"
+          }
+        },
+        {
+          "name": "JSONPlaceholder - Get Users",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://jsonplaceholder.typicode.com/users",
+              "protocol": "https",
+              "host": ["jsonplaceholder", "typicode", "com"],
+              "path": ["users"]
+            },
+            "description": "Gets all users"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Weather APIs",
+      "description": "Weather-related APIs",
+      "item": [
+        {
+          "name": "OpenMeteo - Weather Forecast",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "https://api.open-meteo.com/v1/forecast?latitude=40.7128&longitude=-74.0060&current=temperature_2m,weather_code",
+              "protocol": "https",
+              "host": ["api", "open-meteo", "com"],
+              "path": ["v1", "forecast"],
+              "query": [
+                {
+                  "key": "latitude",
+                  "value": "40.7128"
+                },
+                {
+                  "key": "longitude",
+                  "value": "-74.0060"
+                },
+                {
+                  "key": "current",
+                  "value": "temperature_2m,weather_code"
+                }
+              ]
+            },
+            "description": "Gets weather forecast for New York"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "reportId": "report-1779786711920",
+  "reportFilename": "report-1779786711917.html",
+  "testResultsId": "results-1779786573473",
+  "sessionId": "session-1779786438795",
+  "generatedAt": "2026-05-26T09:11:51.920Z",
+  "stats": {
+    "totalApis": 2,
+    "totalTests": 10,
+    "passedTests": 9,
+    "failedTests": 1,
+    "passRate": 90
+  }
+}

@@ -1,0 +1,538 @@
+{
+  "testResultsId": "results-1779785639208",
+  "sessionId": "session-1779785567788",
+  "apis": [
+    {
+      "id": "api-1779785567788-0.3095997253281173",
+      "name": "https://dummyjson.com/auth/login",
+      "description": "https://dummyjson.com/auth/login",
+      "url": "https://dummyjson.com/auth/login",
+      "method": "POST",
+      "headers": {},
+      "body": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}",
+      "auth": null,
+      "originalItem": {
+        "name": "https://dummyjson.com/auth/login",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "https://dummyjson.com/auth/login",
+            "protocol": "https",
+            "host": [
+              "dummyjson",
+              "com"
+            ],
+            "path": [
+              "auth",
+              "login"
+            ]
+          }
+        },
+        "response": []
+      }
+    }
+  ],
+  "allTestCases": [
+    {
+      "id": "test-1779785628881-1",
+      "api_id": "api-1779785567788-0.3095997253281173",
+      "type": "Positive Test",
+      "description": "Test successful API call with valid parameters",
+      "expected_result": "Should return 200 OK with valid response",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 0,
+        "statusText": "Unknown Error",
+        "headers": {},
+        "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca",
+        "body": null
+      },
+      "response_time": 6268,
+      "passed": false,
+      "request": {
+        "method": "post",
+        "url": "https://dummyjson.com/auth/login",
+        "headers": {
+          "Accept": "application/json, text/plain, */*",
+          "Content-Type": "application/x-www-form-urlencoded",
+          "User-Agent": "axios/1.16.1",
+          "Content-Length": "57",
+          "Accept-Encoding": "gzip, compress, deflate, br"
+        },
+        "body": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}"
+      },
+      "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+    },
+    {
+      "id": "test-1779785628881-2",
+      "api_id": "api-1779785567788-0.3095997253281173",
+      "type": "Negative Test",
+      "description": "Test API call with invalid parameters",
+      "expected_result": "Should return 400 Bad Request or similar error",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 400,
+        "statusText": "Bad Request",
+        "headers": {
+          "date": "Tue, 26 May 2026 08:53:56 GMT",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "44",
+          "connection": "keep-alive",
+          "access-control-allow-credentials": "true",
+          "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+          "strict-transport-security": "max-age=15552000; includeSubDomains",
+          "vary": "Origin, Accept-Encoding",
+          "x-content-type-options": "nosniff",
+          "x-dns-prefetch-control": "off",
+          "x-download-options": "noopen",
+          "x-frame-options": "SAMEORIGIN",
+          "x-ratelimit-limit": "100",
+          "x-ratelimit-remaining": "99",
+          "x-ratelimit-reset": "1779785638",
+          "x-xss-protection": "1; mode=block",
+          "cf-cache-status": "DYNAMIC",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=d2Rzd6U4RpSowqz06QZpFHO%2FVaSoMHSwYBWp6VOqiK%2BDwrb9JItSP9pI7NNypzXrpBEKl9qdBQANHW2FP3LnZyJxeed8%2BJwAKWx6yq8ebHvgsbbksvaLhxloklZ2XIPQ\"}]}",
+          "server": "cloudflare",
+          "cf-ray": "a01b8d608968f906-SIN"
+        },
+        "body": {
+          "message": "Username and password required"
+        }
+      },
+      "response_time": 535,
+      "passed": false,
+      "request": {
+        "method": "POST",
+        "url": "https://dummyjson.com/auth/login",
+        "headers": {},
+        "body": {}
+      },
+      "error": null
+    },
+    {
+      "id": "test-1779785628881-3",
+      "api_id": "api-1779785567788-0.3095997253281173",
+      "type": "Invalid Payload",
+      "description": "Test API with malformed request body",
+      "expected_result": "Should return 400 or 422 error",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 400,
+        "statusText": "Bad Request",
+        "headers": {
+          "date": "Tue, 26 May 2026 08:53:57 GMT",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "79",
+          "connection": "keep-alive",
+          "access-control-allow-credentials": "true",
+          "etag": "W/\"4f-5FTE7AtYcNJv94lncq1sftEUz4Y\"",
+          "strict-transport-security": "max-age=15552000; includeSubDomains",
+          "vary": "Origin, Accept-Encoding",
+          "x-content-type-options": "nosniff",
+          "x-dns-prefetch-control": "off",
+          "x-download-options": "noopen",
+          "x-frame-options": "SAMEORIGIN",
+          "x-ratelimit-limit": "100",
+          "x-ratelimit-remaining": "98",
+          "x-ratelimit-reset": "1779785638",
+          "x-xss-protection": "1; mode=block",
+          "cf-cache-status": "DYNAMIC",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=zs6Yam5K5qD%2BAlG2BZHbxcc28DKIdMis1WYSrF2IoAOB2WDOiwXwnfn%2FYMKdQUnuX8gS7Tpw6psn0EZFoRFp92XjoNxhDivOvQxxY%2BIlb55Q%2FE78fUPDbraydM3DJN0B\"}]}",
+          "server": "cloudflare",
+          "cf-ray": "a01b8d65cea2f906-SIN"
+        },
+        "body": {
+          "message": "Unexpected token '\"', \"\"{ invalid json }\"\" is not valid JSON"
+        }
+      },
+      "response_time": 317,
+      "passed": false,
+      "request": {
+        "method": "POST",
+        "url": "https://dummyjson.com/auth/login",
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": "{ invalid json }"
+      },
+      "error": null
+    },
+    {
+      "id": "test-1779785628881-4",
+      "api_id": "api-1779785567788-0.3095997253281173",
+      "type": "Auth Failure",
+      "description": "Test API without proper authentication",
+      "expected_result": "Should return 401 Unauthorized",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 400,
+        "statusText": "Bad Request",
+        "headers": {
+          "date": "Tue, 26 May 2026 08:53:57 GMT",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "44",
+          "connection": "keep-alive",
+          "access-control-allow-credentials": "true",
+          "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+          "strict-transport-security": "max-age=15552000; includeSubDomains",
+          "vary": "Origin, Accept-Encoding",
+          "x-content-type-options": "nosniff",
+          "x-dns-prefetch-control": "off",
+          "x-download-options": "noopen",
+          "x-frame-options": "SAMEORIGIN",
+          "x-ratelimit-limit": "100",
+          "x-ratelimit-remaining": "99",
+          "x-ratelimit-reset": "1779785648",
+          "x-xss-protection": "1; mode=block",
+          "cf-cache-status": "DYNAMIC",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=4dum5xSZEQKPcZto%2FNJ%2FJShiiVfuac5jioM1u6hazTUgq66GctXSQeskHkV4yxekyA6u%2F7errp8porAxHSePgw4egKN%2Bw7LqwI9BwMQYn09hjINsu%2B1qhzj%2B3Su2%2BQ7z\"}]}",
+          "server": "cloudflare",
+          "cf-ray": "a01b8d6b0c58f906-SIN"
+        },
+        "body": {
+          "message": "Username and password required"
+        }
+      },
+      "response_time": 320,
+      "passed": false,
+      "request": {
+        "method": "POST",
+        "url": "https://dummyjson.com/auth/login",
+        "headers": {},
+        "body": null
+      },
+      "error": null
+    },
+    {
+      "id": "test-1779785628881-5",
+      "api_id": "api-1779785567788-0.3095997253281173",
+      "type": "Status Code Validation",
+      "description": "Verify correct status codes are returned",
+      "expected_result": "Status codes should match API specification",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 400,
+        "statusText": "Bad Request",
+        "headers": {
+          "date": "Tue, 26 May 2026 08:53:58 GMT",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "44",
+          "connection": "keep-alive",
+          "access-control-allow-credentials": "true",
+          "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+          "strict-transport-security": "max-age=15552000; includeSubDomains",
+          "vary": "Origin, Accept-Encoding",
+          "x-content-type-options": "nosniff",
+          "x-dns-prefetch-control": "off",
+          "x-download-options": "noopen",
+          "x-frame-options": "SAMEORIGIN",
+          "x-ratelimit-limit": "100",
+          "x-ratelimit-remaining": "98",
+          "x-ratelimit-reset": "1779785648",
+          "x-xss-protection": "1; mode=block",
+          "cf-cache-status": "DYNAMIC",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=5XY4rn%2BY49mnnksO52A4SC2OAECmk2%2BUzpjfKOBJAlWpWE46A1iidgsj6Qs2PUqdmGI2zJlgKYTMW%2BM5a6uHnjggamIgoLdKkXySW4%2FapwuiDXRNbNLkbZE1FrsX8Nlg\"}]}",
+          "server": "cloudflare",
+          "cf-ray": "a01b8d70380cf906-SIN"
+        },
+        "body": {
+          "message": "Username and password required"
+        }
+      },
+      "response_time": 313,
+      "passed": false,
+      "request": {
+        "method": "POST",
+        "url": "https://dummyjson.com/auth/login",
+        "headers": {},
+        "body": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}"
+      },
+      "error": null
+    }
+  ],
+  "results": [
+    {
+      "api": {
+        "id": "api-1779785567788-0.3095997253281173",
+        "name": "https://dummyjson.com/auth/login",
+        "description": "https://dummyjson.com/auth/login",
+        "url": "https://dummyjson.com/auth/login",
+        "method": "POST",
+        "headers": {},
+        "body": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}",
+        "auth": null,
+        "originalItem": {
+          "name": "https://dummyjson.com/auth/login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://dummyjson.com/auth/login",
+              "protocol": "https",
+              "host": [
+                "dummyjson",
+                "com"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      },
+      "testResults": [
+        {
+          "id": "test-1779785628881-1",
+          "api_id": "api-1779785567788-0.3095997253281173",
+          "type": "Positive Test",
+          "description": "Test successful API call with valid parameters",
+          "expected_result": "Should return 200 OK with valid response",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 0,
+            "statusText": "Unknown Error",
+            "headers": {},
+            "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca",
+            "body": null
+          },
+          "response_time": 6268,
+          "passed": false,
+          "request": {
+            "method": "post",
+            "url": "https://dummyjson.com/auth/login",
+            "headers": {
+              "Accept": "application/json, text/plain, */*",
+              "Content-Type": "application/x-www-form-urlencoded",
+              "User-Agent": "axios/1.16.1",
+              "Content-Length": "57",
+              "Accept-Encoding": "gzip, compress, deflate, br"
+            },
+            "body": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}"
+          },
+          "error": "unable to verify the first certificate; if the root CA is installed locally, try running Node.js with --use-system-ca"
+        },
+        {
+          "id": "test-1779785628881-2",
+          "api_id": "api-1779785567788-0.3095997253281173",
+          "type": "Negative Test",
+          "description": "Test API call with invalid parameters",
+          "expected_result": "Should return 400 Bad Request or similar error",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 400,
+            "statusText": "Bad Request",
+            "headers": {
+              "date": "Tue, 26 May 2026 08:53:56 GMT",
+              "content-type": "application/json; charset=utf-8",
+              "content-length": "44",
+              "connection": "keep-alive",
+              "access-control-allow-credentials": "true",
+              "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+              "strict-transport-security": "max-age=15552000; includeSubDomains",
+              "vary": "Origin, Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-dns-prefetch-control": "off",
+              "x-download-options": "noopen",
+              "x-frame-options": "SAMEORIGIN",
+              "x-ratelimit-limit": "100",
+              "x-ratelimit-remaining": "99",
+              "x-ratelimit-reset": "1779785638",
+              "x-xss-protection": "1; mode=block",
+              "cf-cache-status": "DYNAMIC",
+              "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+              "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=d2Rzd6U4RpSowqz06QZpFHO%2FVaSoMHSwYBWp6VOqiK%2BDwrb9JItSP9pI7NNypzXrpBEKl9qdBQANHW2FP3LnZyJxeed8%2BJwAKWx6yq8ebHvgsbbksvaLhxloklZ2XIPQ\"}]}",
+              "server": "cloudflare",
+              "cf-ray": "a01b8d608968f906-SIN"
+            },
+            "body": {
+              "message": "Username and password required"
+            }
+          },
+          "response_time": 535,
+          "passed": false,
+          "request": {
+            "method": "POST",
+            "url": "https://dummyjson.com/auth/login",
+            "headers": {},
+            "body": {}
+          },
+          "error": null
+        },
+        {
+          "id": "test-1779785628881-3",
+          "api_id": "api-1779785567788-0.3095997253281173",
+          "type": "Invalid Payload",
+          "description": "Test API with malformed request body",
+          "expected_result": "Should return 400 or 422 error",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 400,
+            "statusText": "Bad Request",
+            "headers": {
+              "date": "Tue, 26 May 2026 08:53:57 GMT",
+              "content-type": "application/json; charset=utf-8",
+              "content-length": "79",
+              "connection": "keep-alive",
+              "access-control-allow-credentials": "true",
+              "etag": "W/\"4f-5FTE7AtYcNJv94lncq1sftEUz4Y\"",
+              "strict-transport-security": "max-age=15552000; includeSubDomains",
+              "vary": "Origin, Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-dns-prefetch-control": "off",
+              "x-download-options": "noopen",
+              "x-frame-options": "SAMEORIGIN",
+              "x-ratelimit-limit": "100",
+              "x-ratelimit-remaining": "98",
+              "x-ratelimit-reset": "1779785638",
+              "x-xss-protection": "1; mode=block",
+              "cf-cache-status": "DYNAMIC",
+              "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+              "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=zs6Yam5K5qD%2BAlG2BZHbxcc28DKIdMis1WYSrF2IoAOB2WDOiwXwnfn%2FYMKdQUnuX8gS7Tpw6psn0EZFoRFp92XjoNxhDivOvQxxY%2BIlb55Q%2FE78fUPDbraydM3DJN0B\"}]}",
+              "server": "cloudflare",
+              "cf-ray": "a01b8d65cea2f906-SIN"
+            },
+            "body": {
+              "message": "Unexpected token '\"', \"\"{ invalid json }\"\" is not valid JSON"
+            }
+          },
+          "response_time": 317,
+          "passed": false,
+          "request": {
+            "method": "POST",
+            "url": "https://dummyjson.com/auth/login",
+            "headers": {
+              "Content-Type": "application/json"
+            },
+            "body": "{ invalid json }"
+          },
+          "error": null
+        },
+        {
+          "id": "test-1779785628881-4",
+          "api_id": "api-1779785567788-0.3095997253281173",
+          "type": "Auth Failure",
+          "description": "Test API without proper authentication",
+          "expected_result": "Should return 401 Unauthorized",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 400,
+            "statusText": "Bad Request",
+            "headers": {
+              "date": "Tue, 26 May 2026 08:53:57 GMT",
+              "content-type": "application/json; charset=utf-8",
+              "content-length": "44",
+              "connection": "keep-alive",
+              "access-control-allow-credentials": "true",
+              "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+              "strict-transport-security": "max-age=15552000; includeSubDomains",
+              "vary": "Origin, Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-dns-prefetch-control": "off",
+              "x-download-options": "noopen",
+              "x-frame-options": "SAMEORIGIN",
+              "x-ratelimit-limit": "100",
+              "x-ratelimit-remaining": "99",
+              "x-ratelimit-reset": "1779785648",
+              "x-xss-protection": "1; mode=block",
+              "cf-cache-status": "DYNAMIC",
+              "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+              "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=4dum5xSZEQKPcZto%2FNJ%2FJShiiVfuac5jioM1u6hazTUgq66GctXSQeskHkV4yxekyA6u%2F7errp8porAxHSePgw4egKN%2Bw7LqwI9BwMQYn09hjINsu%2B1qhzj%2B3Su2%2BQ7z\"}]}",
+              "server": "cloudflare",
+              "cf-ray": "a01b8d6b0c58f906-SIN"
+            },
+            "body": {
+              "message": "Username and password required"
+            }
+          },
+          "response_time": 320,
+          "passed": false,
+          "request": {
+            "method": "POST",
+            "url": "https://dummyjson.com/auth/login",
+            "headers": {},
+            "body": null
+          },
+          "error": null
+        },
+        {
+          "id": "test-1779785628881-5",
+          "api_id": "api-1779785567788-0.3095997253281173",
+          "type": "Status Code Validation",
+          "description": "Verify correct status codes are returned",
+          "expected_result": "Status codes should match API specification",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 400,
+            "statusText": "Bad Request",
+            "headers": {
+              "date": "Tue, 26 May 2026 08:53:58 GMT",
+              "content-type": "application/json; charset=utf-8",
+              "content-length": "44",
+              "connection": "keep-alive",
+              "access-control-allow-credentials": "true",
+              "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+              "strict-transport-security": "max-age=15552000; includeSubDomains",
+              "vary": "Origin, Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-dns-prefetch-control": "off",
+              "x-download-options": "noopen",
+              "x-frame-options": "SAMEORIGIN",
+              "x-ratelimit-limit": "100",
+              "x-ratelimit-remaining": "98",
+              "x-ratelimit-reset": "1779785648",
+              "x-xss-protection": "1; mode=block",
+              "cf-cache-status": "DYNAMIC",
+              "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+              "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=5XY4rn%2BY49mnnksO52A4SC2OAECmk2%2BUzpjfKOBJAlWpWE46A1iidgsj6Qs2PUqdmGI2zJlgKYTMW%2BM5a6uHnjggamIgoLdKkXySW4%2FapwuiDXRNbNLkbZE1FrsX8Nlg\"}]}",
+              "server": "cloudflare",
+              "cf-ray": "a01b8d70380cf906-SIN"
+            },
+            "body": {
+              "message": "Username and password required"
+            }
+          },
+          "response_time": 313,
+          "passed": false,
+          "request": {
+            "method": "POST",
+            "url": "https://dummyjson.com/auth/login",
+            "headers": {},
+            "body": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}"
+          },
+          "error": null
+        }
+      ],
+      "status": "completed"
+    }
+  ],
+  "executedAt": "2026-05-26T08:53:59.208Z",
+  "totalApis": 1,
+  "totalTests": 5,
+  "passedTests": 0,
+  "failedTests": 5
+}

@@ -1,0 +1,508 @@
+{
+  "testResultsId": "results-1779781909162",
+  "sessionId": "session-1779781842720",
+  "apis": [
+    {
+      "id": "api-1779781842719-0.2662518960254494",
+      "name": "https://dummyjson.com/auth/login",
+      "description": "https://dummyjson.com/auth/login",
+      "url": "https://dummyjson.com/auth/login",
+      "method": "POST",
+      "headers": {},
+      "body": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}",
+      "auth": null,
+      "originalItem": {
+        "name": "https://dummyjson.com/auth/login",
+        "request": {
+          "method": "POST",
+          "header": [],
+          "body": {
+            "mode": "raw",
+            "raw": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}",
+            "options": {
+              "raw": {
+                "language": "json"
+              }
+            }
+          },
+          "url": {
+            "raw": "https://dummyjson.com/auth/login",
+            "protocol": "https",
+            "host": [
+              "dummyjson",
+              "com"
+            ],
+            "path": [
+              "auth",
+              "login"
+            ]
+          }
+        },
+        "response": []
+      }
+    }
+  ],
+  "allTestCases": [
+    {
+      "id": "test-1779781904634-1",
+      "api_id": "api-1779781842719-0.2662518960254494",
+      "type": "Positive Test",
+      "description": "Test successful API call with valid parameters",
+      "expected_result": "Should return 200 OK with valid response",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 400,
+        "statusText": "Bad Request",
+        "headers": {
+          "date": "Tue, 26 May 2026 07:51:45 GMT",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "44",
+          "connection": "keep-alive",
+          "access-control-allow-credentials": "true",
+          "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+          "strict-transport-security": "max-age=15552000; includeSubDomains",
+          "vary": "Origin, Accept-Encoding",
+          "x-content-type-options": "nosniff",
+          "x-dns-prefetch-control": "off",
+          "x-download-options": "noopen",
+          "x-frame-options": "SAMEORIGIN",
+          "x-ratelimit-limit": "100",
+          "x-ratelimit-remaining": "97",
+          "x-ratelimit-reset": "1779781908",
+          "x-xss-protection": "1; mode=block",
+          "cf-cache-status": "DYNAMIC",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ndAI730iju1LMcSGhMsE5U2tVKpgQ%2BrSH5y6XnLMHho%2BiFD8epg6OWq%2FbHVaSbXCCNBXkLxwhKenNM3rmQD%2BNy6EcTcYwhuhdyVU%2F9WR5J%2B7EIR%2BWCYU90HeB4FNs8Yj\"}]}",
+          "server": "cloudflare",
+          "cf-ray": "a01b324a0cd2ff91-SIN"
+        },
+        "body": {
+          "message": "Username and password required"
+        }
+      },
+      "response_time": 607,
+      "passed": false,
+      "error": null
+    },
+    {
+      "id": "test-1779781904634-2",
+      "api_id": "api-1779781842719-0.2662518960254494",
+      "type": "Negative Test",
+      "description": "Test API call with invalid parameters",
+      "expected_result": "Should return 400 Bad Request or similar error",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 400,
+        "statusText": "Bad Request",
+        "headers": {
+          "date": "Tue, 26 May 2026 07:51:46 GMT",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "44",
+          "connection": "keep-alive",
+          "access-control-allow-credentials": "true",
+          "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+          "strict-transport-security": "max-age=15552000; includeSubDomains",
+          "vary": "Origin, Accept-Encoding",
+          "x-content-type-options": "nosniff",
+          "x-dns-prefetch-control": "off",
+          "x-download-options": "noopen",
+          "x-frame-options": "SAMEORIGIN",
+          "x-ratelimit-limit": "100",
+          "x-ratelimit-remaining": "96",
+          "x-ratelimit-reset": "1779781908",
+          "x-xss-protection": "1; mode=block",
+          "cf-cache-status": "DYNAMIC",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=lHtEVmdiFMdG5qAuoDPitL0Ooaj%2FYlXgDQir6AIMhGYyLNv35CJYHAVOvEZ70i2V%2F3QECeZFem%2BHwuKmcMw9fIQA1zf0Fn3w2Isiaw7A8Bx24h%2B8pt7Lyl%2FWIsDeaqT7\"}]}",
+          "server": "cloudflare",
+          "cf-ray": "a01b324f6af5ff91-SIN"
+        },
+        "body": {
+          "message": "Username and password required"
+        }
+      },
+      "response_time": 345,
+      "passed": false,
+      "error": null
+    },
+    {
+      "id": "test-1779781904634-3",
+      "api_id": "api-1779781842719-0.2662518960254494",
+      "type": "Invalid Payload",
+      "description": "Test API with malformed request body",
+      "expected_result": "Should return 400 or 422 error",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 400,
+        "statusText": "Bad Request",
+        "headers": {
+          "date": "Tue, 26 May 2026 07:51:46 GMT",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "79",
+          "connection": "keep-alive",
+          "access-control-allow-credentials": "true",
+          "etag": "W/\"4f-5FTE7AtYcNJv94lncq1sftEUz4Y\"",
+          "strict-transport-security": "max-age=15552000; includeSubDomains",
+          "vary": "Origin, Accept-Encoding",
+          "x-content-type-options": "nosniff",
+          "x-dns-prefetch-control": "off",
+          "x-download-options": "noopen",
+          "x-frame-options": "SAMEORIGIN",
+          "x-ratelimit-limit": "100",
+          "x-ratelimit-remaining": "98",
+          "x-ratelimit-reset": "1779781908",
+          "x-xss-protection": "1; mode=block",
+          "cf-cache-status": "DYNAMIC",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=rk0Z6z1BLFDmca1PjeDb%2FaCb%2BLdvuY%2F8yKvs9FzTC1hin7J2KmeNEKUl%2B34nuiUfDNvBukRIzQGafxFg4oFogZ8P8DU5WzbA%2B2IJFaAo6q77jvk7ZpxjvNf6ZASpz5ni\"}]}",
+          "server": "cloudflare",
+          "cf-ray": "a01b3254b8bbff91-SIN"
+        },
+        "body": {
+          "message": "Unexpected token '\"', \"\"{ invalid json }\"\" is not valid JSON"
+        }
+      },
+      "response_time": 345,
+      "passed": false,
+      "error": null
+    },
+    {
+      "id": "test-1779781904634-4",
+      "api_id": "api-1779781842719-0.2662518960254494",
+      "type": "Auth Failure",
+      "description": "Test API without proper authentication",
+      "expected_result": "Should return 401 Unauthorized",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 400,
+        "statusText": "Bad Request",
+        "headers": {
+          "date": "Tue, 26 May 2026 07:51:47 GMT",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "44",
+          "connection": "keep-alive",
+          "access-control-allow-credentials": "true",
+          "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+          "strict-transport-security": "max-age=15552000; includeSubDomains",
+          "vary": "Origin, Accept-Encoding",
+          "x-content-type-options": "nosniff",
+          "x-dns-prefetch-control": "off",
+          "x-download-options": "noopen",
+          "x-frame-options": "SAMEORIGIN",
+          "x-ratelimit-limit": "100",
+          "x-ratelimit-remaining": "99",
+          "x-ratelimit-reset": "1779781918",
+          "x-xss-protection": "1; mode=block",
+          "cf-cache-status": "DYNAMIC",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=BDkJ%2FDnkGcPnuEB4z0c%2Bgyo5thNko9RiKfpI40eRTUemuVc1wDpS30ICm0Fas%2Bw9Ej1nKb7J%2BrA9RpwSSYiGzf%2F7v3hWXEChrnLP0uXCQ1NBblBcQwr5L4Up2rSXhyMk\"}]}",
+          "server": "cloudflare",
+          "cf-ray": "a01b325a1eadff91-SIN"
+        },
+        "body": {
+          "message": "Username and password required"
+        }
+      },
+      "response_time": 342,
+      "passed": false,
+      "error": null
+    },
+    {
+      "id": "test-1779781904634-5",
+      "api_id": "api-1779781842719-0.2662518960254494",
+      "type": "Status Code Validation",
+      "description": "Verify correct status codes are returned",
+      "expected_result": "Status codes should match API specification",
+      "status": "completed",
+      "actual_result": {
+        "statusCode": 400,
+        "statusText": "Bad Request",
+        "headers": {
+          "date": "Tue, 26 May 2026 07:51:48 GMT",
+          "content-type": "application/json; charset=utf-8",
+          "content-length": "44",
+          "connection": "keep-alive",
+          "access-control-allow-credentials": "true",
+          "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+          "strict-transport-security": "max-age=15552000; includeSubDomains",
+          "vary": "Origin, Accept-Encoding",
+          "x-content-type-options": "nosniff",
+          "x-dns-prefetch-control": "off",
+          "x-download-options": "noopen",
+          "x-frame-options": "SAMEORIGIN",
+          "x-ratelimit-limit": "100",
+          "x-ratelimit-remaining": "98",
+          "x-ratelimit-reset": "1779781918",
+          "x-xss-protection": "1; mode=block",
+          "cf-cache-status": "DYNAMIC",
+          "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+          "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=%2FAR50TNenLLTEvMqe8s487wkeNFy92Ddp2uOzM7uwCDDBXgksy1LriiV1N2%2BReU4vcFO6cY1g0YvGCk9BPXTErsUReejE%2F6f9rKelPmhd%2BY1jdlcTq6shDiFr%2FVk%2BMTN\"}]}",
+          "server": "cloudflare",
+          "cf-ray": "a01b325f5e0cff91-SIN"
+        },
+        "body": {
+          "message": "Username and password required"
+        }
+      },
+      "response_time": 344,
+      "passed": false,
+      "error": null
+    }
+  ],
+  "results": [
+    {
+      "api": {
+        "id": "api-1779781842719-0.2662518960254494",
+        "name": "https://dummyjson.com/auth/login",
+        "description": "https://dummyjson.com/auth/login",
+        "url": "https://dummyjson.com/auth/login",
+        "method": "POST",
+        "headers": {},
+        "body": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}",
+        "auth": null,
+        "originalItem": {
+          "name": "https://dummyjson.com/auth/login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n  \"username\": \"emilys\",\r\n  \"password\": \"emilyspass\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "https://dummyjson.com/auth/login",
+              "protocol": "https",
+              "host": [
+                "dummyjson",
+                "com"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        }
+      },
+      "testResults": [
+        {
+          "id": "test-1779781904634-1",
+          "api_id": "api-1779781842719-0.2662518960254494",
+          "type": "Positive Test",
+          "description": "Test successful API call with valid parameters",
+          "expected_result": "Should return 200 OK with valid response",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 400,
+            "statusText": "Bad Request",
+            "headers": {
+              "date": "Tue, 26 May 2026 07:51:45 GMT",
+              "content-type": "application/json; charset=utf-8",
+              "content-length": "44",
+              "connection": "keep-alive",
+              "access-control-allow-credentials": "true",
+              "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+              "strict-transport-security": "max-age=15552000; includeSubDomains",
+              "vary": "Origin, Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-dns-prefetch-control": "off",
+              "x-download-options": "noopen",
+              "x-frame-options": "SAMEORIGIN",
+              "x-ratelimit-limit": "100",
+              "x-ratelimit-remaining": "97",
+              "x-ratelimit-reset": "1779781908",
+              "x-xss-protection": "1; mode=block",
+              "cf-cache-status": "DYNAMIC",
+              "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+              "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=ndAI730iju1LMcSGhMsE5U2tVKpgQ%2BrSH5y6XnLMHho%2BiFD8epg6OWq%2FbHVaSbXCCNBXkLxwhKenNM3rmQD%2BNy6EcTcYwhuhdyVU%2F9WR5J%2B7EIR%2BWCYU90HeB4FNs8Yj\"}]}",
+              "server": "cloudflare",
+              "cf-ray": "a01b324a0cd2ff91-SIN"
+            },
+            "body": {
+              "message": "Username and password required"
+            }
+          },
+          "response_time": 607,
+          "passed": false,
+          "error": null
+        },
+        {
+          "id": "test-1779781904634-2",
+          "api_id": "api-1779781842719-0.2662518960254494",
+          "type": "Negative Test",
+          "description": "Test API call with invalid parameters",
+          "expected_result": "Should return 400 Bad Request or similar error",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 400,
+            "statusText": "Bad Request",
+            "headers": {
+              "date": "Tue, 26 May 2026 07:51:46 GMT",
+              "content-type": "application/json; charset=utf-8",
+              "content-length": "44",
+              "connection": "keep-alive",
+              "access-control-allow-credentials": "true",
+              "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+              "strict-transport-security": "max-age=15552000; includeSubDomains",
+              "vary": "Origin, Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-dns-prefetch-control": "off",
+              "x-download-options": "noopen",
+              "x-frame-options": "SAMEORIGIN",
+              "x-ratelimit-limit": "100",
+              "x-ratelimit-remaining": "96",
+              "x-ratelimit-reset": "1779781908",
+              "x-xss-protection": "1; mode=block",
+              "cf-cache-status": "DYNAMIC",
+              "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+              "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=lHtEVmdiFMdG5qAuoDPitL0Ooaj%2FYlXgDQir6AIMhGYyLNv35CJYHAVOvEZ70i2V%2F3QECeZFem%2BHwuKmcMw9fIQA1zf0Fn3w2Isiaw7A8Bx24h%2B8pt7Lyl%2FWIsDeaqT7\"}]}",
+              "server": "cloudflare",
+              "cf-ray": "a01b324f6af5ff91-SIN"
+            },
+            "body": {
+              "message": "Username and password required"
+            }
+          },
+          "response_time": 345,
+          "passed": false,
+          "error": null
+        },
+        {
+          "id": "test-1779781904634-3",
+          "api_id": "api-1779781842719-0.2662518960254494",
+          "type": "Invalid Payload",
+          "description": "Test API with malformed request body",
+          "expected_result": "Should return 400 or 422 error",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 400,
+            "statusText": "Bad Request",
+            "headers": {
+              "date": "Tue, 26 May 2026 07:51:46 GMT",
+              "content-type": "application/json; charset=utf-8",
+              "content-length": "79",
+              "connection": "keep-alive",
+              "access-control-allow-credentials": "true",
+              "etag": "W/\"4f-5FTE7AtYcNJv94lncq1sftEUz4Y\"",
+              "strict-transport-security": "max-age=15552000; includeSubDomains",
+              "vary": "Origin, Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-dns-prefetch-control": "off",
+              "x-download-options": "noopen",
+              "x-frame-options": "SAMEORIGIN",
+              "x-ratelimit-limit": "100",
+              "x-ratelimit-remaining": "98",
+              "x-ratelimit-reset": "1779781908",
+              "x-xss-protection": "1; mode=block",
+              "cf-cache-status": "DYNAMIC",
+              "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+              "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=rk0Z6z1BLFDmca1PjeDb%2FaCb%2BLdvuY%2F8yKvs9FzTC1hin7J2KmeNEKUl%2B34nuiUfDNvBukRIzQGafxFg4oFogZ8P8DU5WzbA%2B2IJFaAo6q77jvk7ZpxjvNf6ZASpz5ni\"}]}",
+              "server": "cloudflare",
+              "cf-ray": "a01b3254b8bbff91-SIN"
+            },
+            "body": {
+              "message": "Unexpected token '\"', \"\"{ invalid json }\"\" is not valid JSON"
+            }
+          },
+          "response_time": 345,
+          "passed": false,
+          "error": null
+        },
+        {
+          "id": "test-1779781904634-4",
+          "api_id": "api-1779781842719-0.2662518960254494",
+          "type": "Auth Failure",
+          "description": "Test API without proper authentication",
+          "expected_result": "Should return 401 Unauthorized",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 400,
+            "statusText": "Bad Request",
+            "headers": {
+              "date": "Tue, 26 May 2026 07:51:47 GMT",
+              "content-type": "application/json; charset=utf-8",
+              "content-length": "44",
+              "connection": "keep-alive",
+              "access-control-allow-credentials": "true",
+              "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+              "strict-transport-security": "max-age=15552000; includeSubDomains",
+              "vary": "Origin, Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-dns-prefetch-control": "off",
+              "x-download-options": "noopen",
+              "x-frame-options": "SAMEORIGIN",
+              "x-ratelimit-limit": "100",
+              "x-ratelimit-remaining": "99",
+              "x-ratelimit-reset": "1779781918",
+              "x-xss-protection": "1; mode=block",
+              "cf-cache-status": "DYNAMIC",
+              "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+              "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=BDkJ%2FDnkGcPnuEB4z0c%2Bgyo5thNko9RiKfpI40eRTUemuVc1wDpS30ICm0Fas%2Bw9Ej1nKb7J%2BrA9RpwSSYiGzf%2F7v3hWXEChrnLP0uXCQ1NBblBcQwr5L4Up2rSXhyMk\"}]}",
+              "server": "cloudflare",
+              "cf-ray": "a01b325a1eadff91-SIN"
+            },
+            "body": {
+              "message": "Username and password required"
+            }
+          },
+          "response_time": 342,
+          "passed": false,
+          "error": null
+        },
+        {
+          "id": "test-1779781904634-5",
+          "api_id": "api-1779781842719-0.2662518960254494",
+          "type": "Status Code Validation",
+          "description": "Verify correct status codes are returned",
+          "expected_result": "Status codes should match API specification",
+          "status": "completed",
+          "actual_result": {
+            "statusCode": 400,
+            "statusText": "Bad Request",
+            "headers": {
+              "date": "Tue, 26 May 2026 07:51:48 GMT",
+              "content-type": "application/json; charset=utf-8",
+              "content-length": "44",
+              "connection": "keep-alive",
+              "access-control-allow-credentials": "true",
+              "etag": "W/\"2c-JAq5V8MKfWmWXvKJFTg6rvXRjdU\"",
+              "strict-transport-security": "max-age=15552000; includeSubDomains",
+              "vary": "Origin, Accept-Encoding",
+              "x-content-type-options": "nosniff",
+              "x-dns-prefetch-control": "off",
+              "x-download-options": "noopen",
+              "x-frame-options": "SAMEORIGIN",
+              "x-ratelimit-limit": "100",
+              "x-ratelimit-remaining": "98",
+              "x-ratelimit-reset": "1779781918",
+              "x-xss-protection": "1; mode=block",
+              "cf-cache-status": "DYNAMIC",
+              "nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+              "report-to": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=%2FAR50TNenLLTEvMqe8s487wkeNFy92Ddp2uOzM7uwCDDBXgksy1LriiV1N2%2BReU4vcFO6cY1g0YvGCk9BPXTErsUReejE%2F6f9rKelPmhd%2BY1jdlcTq6shDiFr%2FVk%2BMTN\"}]}",
+              "server": "cloudflare",
+              "cf-ray": "a01b325f5e0cff91-SIN"
+            },
+            "body": {
+              "message": "Username and password required"
+            }
+          },
+          "response_time": 344,
+          "passed": false,
+          "error": null
+        }
+      ],
+      "status": "completed"
+    }
+  ],
+  "executedAt": "2026-05-26T07:51:49.162Z",
+  "totalApis": 1,
+  "totalTests": 5,
+  "passedTests": 0,
+  "failedTests": 5
+}
