@@ -1,0 +1,22 @@
+[
+  {
+    "testCaseId": "TC_SCRUM-2_1",
+    "title": "Valid API Call for Getting All Products",
+    "preconditions": "API is up and running, the endpoint is accessible",
+    "steps": [
+      "Send a GET request to https://qa.abcorp.com/v1/getAllProducts"
+    ],
+    "expectedResult": "Status code 200 and valid response from API containing product data",
+    "type": "functional"
+  },
+  {
+    "testCaseId": "TC_SCRUM-2_2",
+    "title": "Invalid API Call for Getting All Products",
+    "preconditions": "API is up and running, the endpoint is accessible",
+    "steps": [
+      "Send an incorrect request method (e.g., POST or DELETE) to https://qa.abcorp.com/v1/getAllProducts"
+    ],
+    "expectedResult": "Status code other than 200 and an error response from API",
+    "type": "functional"
+  }
+]

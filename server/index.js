@@ -14,6 +14,7 @@ require('dotenv').config();
 const uploadRoutes = require('./routes/upload');
 const testRoutes = require('./routes/test');
 const reportRoutes = require('./routes/report');
+const tcgRoutes = require('./routes/tcg/testCaseRoutes');
 
 // ============================================
 // Initialize Express App
@@ -44,10 +45,12 @@ app.use(express.static(path.join(__dirname, '../client')));
 // 1. Uploading Postman collections
 // 2. Running API tests
 // 3. Generating and viewing reports
+// 4. Generating test cases from JIRA
 
 app.use('/api/upload', uploadRoutes);
 app.use('/api/test', testRoutes);
 app.use('/api/report', reportRoutes);
+app.use('/api/tcg', tcgRoutes);
 
 // ============================================
 // Health Check Endpoint
@@ -64,9 +67,19 @@ app.get('/api/health', (req, res) => {
 // ============================================
 // Serve Frontend
 // ============================================
-// When user visits root URL, serve the index.html
+// When user visits root URL, serve the unified landing page
 app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index-unified.html'));
+});
+
+// AutoQA - API Testing Interface
+app.get('/app', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
+});
+
+// Test Case Generator Interface
+app.get('/tcg', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/tcg.html'));
 });
 
 // ============================================
@@ -86,13 +99,18 @@ app.use((err, req, res, next) => {
 // Start Server
 // ============================================
 // Listen on the PORT specified in .env or default 3000
-app.listen(PORT, () => {
-  console.log(`
-  ╔════════════════════════════════════╗
-  ║  AutoQA Server Started! 🚀         ║
-  ╠════════════════════════════════════╣
-  ║  Server: http://localhost:${PORT}   ║
-  ║  Environment: ${process.env.NODE_ENV || 'development'}        ║
+app.listen(PORT, () => {═══════════════╗
+  ║  AutoQA + Test Case Generator Started! 🚀       ║
+  ╠═══════════════════════════════════════════════════╣
+  ║  Server: http://localhost:${PORT}                 ║
+  ║  Environment: ${process.env.NODE_ENV || 'development'}                    ║
+  ║  Ollama: ${process.env.OLLAMA_API_URL}                    ║
+  ║                                                   ║
+  ║  Features:                                        ║
+  ║  - API Testing (AutoQA) - /api/test              ║
+  ║  - Report Generation - /api/report                ║
+  ║  - Test Case Generation (TCG) - /api/tcg         ║
+  ╚═══════════════  Environment: ${process.env.NODE_ENV || 'development'}        ║
   ║  Ollama: ${process.env.OLLAMA_API_URL}  ║
   ╚════════════════════════════════════╝
   `);

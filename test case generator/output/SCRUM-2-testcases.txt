@@ -1,0 +1,28 @@
+Test Case 1 (TC_SCRUM-2_1)
+Title: Valid Request for getting all products
+Type: functional
+
+Preconditions:
+API key is provided and valid
+
+Steps:
+1. Send GET request to the URL: https://qa.abcorp.com/v1/getAllProducts
+2. Check if API returns a status code 200
+
+Expected Result:
+API returns a list of products
+
+------------------------------------------------------------
+Test Case 2 (TC_SCRUM-2_2)
+Title: Invalid Request for getting all products (Missing API Key)
+Type: functional
+
+Preconditions:
+API key is not provided or invalid
+
+Steps:
+1. Send GET request to the URL: https://qa.abcorp.com/v1/getAllProducts without providing any API key
+2. Check if API returns a status code other than 200
+
+Expected Result:
+API returns an error message or a status code other than 200

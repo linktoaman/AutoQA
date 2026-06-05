@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>JIRA Test Case Generator</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero">
+        <div>
+          <p class="eyebrow">JIRA Test Case Generator</p>
+          <h1>Generate test cases from a ticket ID</h1>
+          <p class="lead">
+            Enter a JIRA ticket number and instantly preview generated test cases.
+            Download the result as plain text with one click.
+          </p>
+        </div>
+
+        <form id="ticket-form" class="ticket-form">
+          <label for="ticketId">JIRA Ticket ID</label>
+          <div class="field-row">
+            <input id="ticketId" name="ticketId" type="text" placeholder="PROJ-123" required />
+            <button type="submit">Generate</button>
+          </div>
+          <p class="hint">Example: <code>PROJ-123</code></p>
+        </form>
+
+        <div id="status" class="status" aria-live="polite"></div>
+      </section>
+
+      <section id="results" class="results hidden">
+        <div class="results-header">
+          <h2>Generated Test Cases</h2>
+          <button id="downloadBtn" class="download-button" type="button" disabled>
+            Download as .txt
+          </button>
+        </div>
+        <pre id="output" class="output" tabindex="0"></pre>
+      </section>
+    </main>
+
+    <script src="/script.js"></script>
+  </body>
+</html>

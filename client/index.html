@@ -5,8 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoQA - Simple API Testing</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .navbar a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        body {
+            padding-top: 60px;
+        }
+    </style>
 </head>
 <body>
+    <!-- Navigation Bar -->
+    <div class="navbar">
+        <div>🧪 AutoQA - API Testing</div>
+        <a href="/">← Back to Dashboard</a>
+    </div>
+
     <!-- Main Container -->
     <div class="container">
         <!-- Header -->
