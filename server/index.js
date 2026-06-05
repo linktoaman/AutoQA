@@ -99,20 +99,20 @@ app.use((err, req, res, next) => {
 // Start Server
 // ============================================
 // Listen on the PORT specified in .env or default 3000
-app.listen(PORT, () => {═══════════════╗
-  ║  AutoQA + Test Case Generator Started! 🚀       ║
-  ╠═══════════════════════════════════════════════════╣
-  ║  Server: http://localhost:${PORT}                 ║
-  ║  Environment: ${process.env.NODE_ENV || 'development'}                    ║
-  ║  Ollama: ${process.env.OLLAMA_API_URL}                    ║
-  ║                                                   ║
-  ║  Features:                                        ║
-  ║  - API Testing (AutoQA) - /api/test              ║
-  ║  - Report Generation - /api/report                ║
-  ║  - Test Case Generation (TCG) - /api/tcg         ║
-  ╚═══════════════  Environment: ${process.env.NODE_ENV || 'development'}        ║
-  ║  Ollama: ${process.env.OLLAMA_API_URL}  ║
-  ╚════════════════════════════════════╝
+app.listen(PORT, () => {
+  console.log(`
+╔════════════════════════════════════════════════════╗
+║  AutoQA + Test Case Generator Started! 🚀         ║
+╠════════════════════════════════════════════════════╣
+║  Server: http://localhost:${PORT}                  ║
+║  Environment: ${process.env.NODE_ENV || 'development'}                       ║
+║  Ollama: ${process.env.OLLAMA_API_URL}             ║
+║                                                    ║
+║  Features:                                         ║
+║  - API Testing (AutoQA) - /api/test               ║
+║  - Report Generation - /api/report                ║
+║  - Test Case Generation (TCG) - /api/tcg          ║
+╚════════════════════════════════════════════════════╝
   `);
 });
 

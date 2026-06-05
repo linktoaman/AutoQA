@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AutoQA - Unified Platform</title>
+  <title>AutoQA - Unified QA Platform</title>
   <style>
     * {
       margin: 0;
@@ -19,93 +19,205 @@
       justify-content: center;
       align-items: center;
       padding: 20px;
+      animation: backgroundShift 10s ease infinite;
+    }
+
+    @keyframes backgroundShift {
+      0%, 100% { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+      50% { background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); }
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       width: 100%;
     }
 
     .header {
       text-align: center;
       color: white;
-      margin-bottom: 50px;
+      margin-bottom: 60px;
+      animation: slideDown 0.8s ease;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .header h1 {
-      font-size: 3rem;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      font-size: 4rem;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      font-weight: 800;
+      letter-spacing: -1px;
     }
 
     .header p {
-      font-size: 1.1rem;
+      font-size: 1.3rem;
+      opacity: 0.95;
+      margin-bottom: 10px;
+      font-weight: 300;
+    }
+
+    .header .subtitle {
+      font-size: 1rem;
+      opacity: 0.8;
+      font-style: italic;
+    }
+
+    .welcome-section {
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 50px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      animation: fadeIn 1s ease 0.2s both;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .welcome-section h3 {
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+    }
+
+    .welcome-section p {
+      font-size: 1rem;
       opacity: 0.9;
+    }
+
+    .choose-section {
+      text-align: center;
+      margin-bottom: 40px;
+      animation: fadeIn 1s ease 0.4s both;
+    }
+
+    .choose-section h2 {
+      color: white;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     .modules-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      margin-bottom: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
     }
 
     .module-card {
       background: white;
-      border-radius: 15px;
+      border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       cursor: pointer;
+      animation: slideUp 0.8s ease 0.5s both;
+      position: relative;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .module-card:nth-child(2) {
+      animation-delay: 0.7s;
+    }
+
+    .module-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
     }
 
     .module-card:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4);
+      transform: translateY(-15px);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.4);
     }
 
     .module-header {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      padding: 30px 20px;
+      padding: 50px 20px 30px;
       text-align: center;
     }
 
     .module-icon {
-      font-size: 3rem;
-      margin-bottom: 10px;
+      font-size: 5rem;
+      margin-bottom: 15px;
+      display: inline-block;
+      animation: bounce 2s ease infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+
+    .module-card:nth-child(2) .module-icon {
+      animation-delay: 0.3s;
     }
 
     .module-header h2 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       margin-bottom: 5px;
+      font-weight: 700;
     }
 
     .module-header .version {
       font-size: 0.9rem;
       opacity: 0.8;
+      font-weight: 500;
     }
 
     .module-content {
-      padding: 30px;
+      padding: 40px;
     }
 
     .module-content p {
       color: #555;
-      line-height: 1.6;
-      margin-bottom: 15px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 1.05rem;
     }
 
     .features-list {
       list-style: none;
-      margin: 20px 0;
+      margin: 25px 0;
+      text-align: left;
     }
 
     .features-list li {
       color: #666;
-      padding: 8px 0;
-      padding-left: 25px;
+      padding: 12px 0;
+      padding-left: 30px;
       position: relative;
+      font-size: 1rem;
+      font-weight: 500;
     }
 
     .features-list li:before {
@@ -114,25 +226,28 @@
       left: 0;
       color: #667eea;
       font-weight: bold;
+      font-size: 1.3rem;
     }
 
     .button-group {
       display: flex;
-      gap: 10px;
-      margin-top: 20px;
+      gap: 12px;
+      margin-top: 30px;
     }
 
     .btn {
       flex: 1;
-      padding: 12px 24px;
+      padding: 14px 28px;
       border: none;
-      border-radius: 8px;
-      font-size: 1rem;
+      border-radius: 10px;
+      font-size: 1.05rem;
       cursor: pointer;
       transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
       text-align: center;
+      font-weight: 600;
+      letter-spacing: 0.5px;
     }
 
     .btn-primary {
@@ -141,39 +256,79 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+      letter-spacing: 1px;
+    }
+
+    .btn-primary:active {
+      transform: translateY(-1px);
     }
 
     .btn-secondary {
       background: #f0f0f0;
-      color: #333;
+      color: #667eea;
       border: 2px solid #667eea;
     }
 
     .btn-secondary:hover {
       background: #667eea;
       color: white;
+      transform: translateY(-3px);
+    }
+
+    .quick-access {
+      text-align: center;
+      color: white;
+      margin-top: 40px;
+      opacity: 0.8;
+    }
+
+    .quick-access-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 15px;
+      flex-wrap: wrap;
+    }
+
+    .quick-link {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      padding: 10px 20px;
+      border-radius: 25px;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      font-size: 0.95rem;
+    }
+
+    .quick-link:hover {
+      background: rgba(255, 255, 255, 0.3);
+      transform: translateY(-2px);
     }
 
     .footer {
       text-align: center;
       color: white;
-      margin-top: 50px;
-      padding-top: 30px;
+      margin-top: 60px;
+      padding-top: 40px;
       border-top: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeIn 1s ease 1s both;
     }
 
     .footer p {
       opacity: 0.8;
       font-size: 0.95rem;
+      margin-bottom: 10px;
     }
 
     .footer-links {
-      margin-top: 15px;
+      margin-top: 20px;
       display: flex;
       justify-content: center;
       gap: 30px;
+      flex-wrap: wrap;
     }
 
     .footer-links a {
@@ -189,16 +344,41 @@
 
     @media (max-width: 768px) {
       .header h1 {
-        font-size: 2rem;
+        font-size: 2.5rem;
+      }
+
+      .header p {
+        font-size: 1.1rem;
       }
 
       .modules-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 25px;
       }
 
       .button-group {
         flex-direction: column;
+      }
+
+      .module-header {
+        padding: 30px 20px 20px;
+      }
+
+      .module-icon {
+        font-size: 3.5rem;
+      }
+
+      .module-header h2 {
+        font-size: 1.5rem;
+      }
+
+      .module-content {
+        padding: 25px;
+      }
+
+      .features-list li {
+        padding-left: 25px;
+        font-size: 0.95rem;
       }
     }
   </style>
@@ -207,7 +387,17 @@
   <div class="container">
     <div class="header">
       <h1>🚀 AutoQA</h1>
-      <p>Unified Platform for API Testing & Test Case Generation</p>
+      <p>Unified QA Automation Platform</p>
+      <div class="subtitle">Comprehensive API Testing & AI-Powered Test Case Generation</div>
+    </div>
+
+    <div class="welcome-section">
+      <h3>👋 Welcome to Your QA Hub</h3>
+      <p>Choose what you'd like to do: Test your APIs or Generate test cases from your JIRA stories</p>
+    </div>
+
+    <div class="choose-section">
+      <h2>What would you like to do?</h2>
     </div>
 
     <div class="modules-grid">
@@ -216,20 +406,20 @@
         <div class="module-header">
           <div class="module-icon">🧪</div>
           <h2>API Testing</h2>
-          <div class="version">AutoQA v1.0</div>
+          <div class="version">AutoQA - Test Your APIs</div>
         </div>
         <div class="module-content">
           <p>Upload Postman collections and run comprehensive API tests with AI-powered validation using local Ollama LLM.</p>
           <ul class="features-list">
-            <li>Upload Postman Collections</li>
-            <li>Run Automated Tests</li>
-            <li>Generate Test Reports</li>
-            <li>Local AI Integration</li>
-            <li>Positive & Negative Tests</li>
+            <li>✓ Upload Postman Collections</li>
+            <li>✓ Run Automated Tests</li>
+            <li>✓ Generate Beautiful Reports</li>
+            <li>✓ Local AI Integration</li>
+            <li>✓ Positive & Negative Tests</li>
+            <li>✓ Real-time Progress Tracking</li>
           </ul>
           <div class="button-group">
-            <a href="/app" class="btn btn-primary">Launch AutoQA</a>
-            <a href="/docs/autoqa" class="btn btn-secondary">Learn More</a>
+            <a href="/app" class="btn btn-primary">→ Start Testing APIs</a>
           </div>
         </div>
       </div>
@@ -239,34 +429,63 @@
         <div class="module-header">
           <div class="module-icon">📋</div>
           <h2>Test Case Generator</h2>
-          <div class="version">TCG v1.0</div>
+          <div class="version">TCG - Generate from JIRA</div>
         </div>
         <div class="module-content">
           <p>Generate structured test cases from JIRA user stories using AI-powered analysis with Ollama LLM.</p>
           <ul class="features-list">
-            <li>JIRA Integration</li>
-            <li>Acceptance Criteria Parsing</li>
-            <li>AI-Generated Test Cases</li>
-            <li>Positive & Negative Scenarios</li>
-            <li>Export to File</li>
+            <li>✓ JIRA Integration</li>
+            <li>✓ Acceptance Criteria Parsing</li>
+            <li>✓ AI-Generated Test Cases</li>
+            <li>✓ Positive & Negative Scenarios</li>
+            <li>✓ Export to File</li>
+            <li>✓ Credential Verification</li>
           </ul>
           <div class="button-group">
-            <a href="/tcg" class="btn btn-primary">Launch TCG</a>
-            <a href="/docs/tcg" class="btn btn-secondary">Learn More</a>
+            <a href="/tcg" class="btn btn-primary">→ Generate Test Cases</a>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="footer">
-      <p>AutoQA - Unified Platform for QA Automation</p>
-      <div class="footer-links">
-        <a href="/api/health">Status</a>
-        <a href="https://github.com/linktoaman/AutoQA" target="_blank">GitHub</a>
-        <a href="/docs">Documentation</a>
+    <div class="quick-access">
+      <p>💡 Pro Tip: You can access both features anytime from the navigation menu</p>
+      <div class="quick-access-buttons">
+        <a href="/app" class="quick-link">🧪 Go to API Testing</a>
+        <a href="/tcg" class="quick-link">📋 Go to Test Case Generator</a>
+        <a href="/api/health" class="quick-link">📊 Check Server Status</a>
       </div>
-      <p style="margin-top: 20px; font-size: 0.9rem;">Powered by Ollama & Node.js</p>
+    </div>
+
+    <div class="footer">
+      <p>AutoQA - Your Complete QA Automation Solution</p>
+      <div class="footer-links">
+        <a href="/api/health" target="_blank">🟢 Server Status</a>
+        <a href="https://github.com/linktoaman/AutoQA" target="_blank">⭐ GitHub Repository</a>
+        <a href="https://github.com/linktoaman/AutoQA/blob/master/INTEGRATION_GUIDE.md" target="_blank">📚 Documentation</a>
+      </div>
+      <p style="margin-top: 20px; font-size: 0.9rem; opacity: 0.7;">Powered by Node.js, Express, Ollama & AI</p>
     </div>
   </div>
+
+  <script>
+    // Add smooth scroll behavior
+    document.querySelectorAll('a[href^="/"]').forEach(link => {
+      link.addEventListener('click', function(e) {
+        // Only prevent default for internal links
+        if (this.href.includes(window.location.hostname) || this.href.startsWith('/')) {
+          // Allow normal navigation
+        }
+      });
+    });
+
+    // Log when page loads
+    console.log('%c✨ AutoQA Home Page Loaded', 'color: #667eea; font-size: 16px; font-weight: bold;');
+    console.log('Available modules:', {
+      'API Testing': '/app',
+      'Test Case Generator': '/tcg',
+      'Health Check': '/api/health'
+    });
+  </script>
 </body>
 </html>
