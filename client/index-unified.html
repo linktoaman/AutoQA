@@ -120,19 +120,13 @@
 
     .module-card {
       background: white;
-      border-radius: 12px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 8px 20px rgba(3, 10, 34, 0.12);
-      transition: transform 0.14s ease, box-shadow 0.14s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       cursor: pointer;
-      animation: none;
+      animation: slideUp 0.8s ease 0.5s both;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      height: 200px; /* compact dashboard boxes */
-      min-height: 0; /* allow grid sizing */
-    }
     }
 
     @keyframes slideUp {
@@ -168,17 +162,15 @@
     .module-header {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      padding: 12px 10px 8px;
+      padding: 50px 20px 30px;
       text-align: center;
-      border-top-left-radius: 10px;
-      border-top-right-radius: 10px;
     }
 
     .module-icon {
-      font-size: 1.8rem;
-      margin-bottom: 6px;
+      font-size: 5rem;
+      margin-bottom: 15px;
       display: inline-block;
-      animation: none;
+      animation: bounce 2s ease infinite;
     }
 
     @keyframes bounce {
@@ -191,8 +183,8 @@
     }
 
     .module-header h2 {
-      font-size: 1rem;
-      margin-bottom: 2px;
+      font-size: 2rem;
+      margin-bottom: 5px;
       font-weight: 700;
     }
 
@@ -203,52 +195,44 @@
     }
 
     .module-content {
-      padding: 10px 12px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1 1 auto;
+      padding: 40px;
     }
 
     .module-content p {
       color: #555;
-      line-height: 1.4;
-      margin: 0;
-      font-size: 0.9rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 1.05rem;
     }
 
     .features-list {
       list-style: none;
-      margin: 6px 0 0 0;
+      margin: 25px 0;
       text-align: left;
-      display: block;
-      max-height: 60px;
-      overflow: hidden;
     }
 
     .features-list li {
       color: #666;
-      padding: 4px 0;
-      padding-left: 22px;
+      padding: 12px 0;
+      padding-left: 30px;
       position: relative;
-      font-size: 0.88rem;
+      font-size: 1rem;
       font-weight: 500;
-      line-height: 1.2;
     }
 
     .features-list li:before {
-      content: "•";
+      content: "✓";
       position: absolute;
       left: 0;
       color: #667eea;
-      font-weight: 700;
-      font-size: 0.9rem;
+      font-weight: bold;
+      font-size: 1.3rem;
     }
 
     .button-group {
       display: flex;
-      gap: 8px;
-      margin-top: auto;
+      gap: 12px;
+      margin-top: 30px;
     }
 
     .btn {
@@ -269,8 +253,6 @@
     .btn-primary {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      padding: 8px 10px;
-      font-size: 0.9rem;
     }
 
     .btn-primary:hover {
@@ -284,11 +266,9 @@
     }
 
     .btn-secondary {
-      background: #f7f7fb;
+      background: #f0f0f0;
       color: #667eea;
-      border: 1px solid #e6e8f2;
-      padding: 6px 10px;
-      font-size: 0.85rem;
+      border: 2px solid #667eea;
     }
 
     .btn-secondary:hover {
