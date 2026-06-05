@@ -11,15 +11,18 @@
       box-sizing: border-box;
     }
 
+    html, body { height: 100%; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
+      height: 100vh;
+      margin: 0;
+      padding: 8px 12px;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 20px;
+      align-items: stretch;
       animation: backgroundShift 10s ease infinite;
+      overflow: hidden; /* prevent body scroll */
     }
 
     @keyframes backgroundShift {
@@ -28,15 +31,20 @@
     }
 
     .container {
-      max-width: 1400px;
+      max-width: 1200px;
       width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .header {
       text-align: center;
       color: white;
-      margin-bottom: 60px;
-      animation: slideDown 0.8s ease;
+      margin-bottom: 12px;
+      padding-top: 8px;
+      animation: slideDown 0.6s ease;
     }
 
     @keyframes slideDown {
@@ -113,22 +121,28 @@
 
     .modules-grid {
       display: grid;
-      /* Force two cards per row on typical desktop widths so 4 cards form 2x2 grid */
-      grid-template-columns: repeat(2, minmax(300px, 1fr));
-      gap: 28px;
-      margin-bottom: 50px;
-      align-items: start;
+      /* 2 columns, 2 rows max; cards stretch to fill available vertical space */
+      grid-template-columns: repeat(2, minmax(260px, 1fr));
+      grid-auto-rows: 1fr;
+      gap: 18px;
+      margin: 0;
+      flex: 1 1 auto;
+      align-items: stretch;
     }
 
     .module-card {
       background: white;
-      border-radius: 20px;
+      border-radius: 12px;
       overflow: hidden;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
       cursor: pointer;
-      animation: slideUp 0.8s ease 0.5s both;
+      animation: none;
       position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 0; /* allow grid sizing */
     }
 
     @keyframes slideUp {
@@ -314,10 +328,11 @@
     .footer {
       text-align: center;
       color: white;
-      margin-top: 60px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255, 255, 255, 0.2);
-      animation: fadeIn 1s ease 1s both;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      animation: fadeIn 0.6s ease 0.2s both;
+      font-size: 13px;
     }
 
     .footer p {
@@ -345,14 +360,7 @@
       opacity: 1;
     }
 
-    @media (max-width: 1000px) {
-      .modules-grid {
-        grid-template-columns: repeat(2, minmax(260px, 1fr));
-        gap: 20px;
-      }
-    }
-
-    @media (max-width: 700px) {
+    @media (max-width: 900px) {
       .header h1 {
         font-size: 2.5rem;
       }
@@ -371,7 +379,7 @@
       }
 
       .module-header {
-        padding: 30px 20px 20px;
+        padding: 14px 12px 10px;
       }
 
       .module-icon {
@@ -383,7 +391,7 @@
       }
 
       .module-content {
-        padding: 25px;
+        padding: 12px 10px 14px;
       }
 
       .features-list li {
