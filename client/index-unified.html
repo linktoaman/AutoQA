@@ -11,18 +11,15 @@
       box-sizing: border-box;
     }
 
-    html, body { height: 100%; }
     body {
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      height: 100vh;
-      margin: 0;
-      padding: 8px 12px;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: stretch;
+      align-items: center;
+      padding: 20px;
       animation: backgroundShift 10s ease infinite;
-      overflow: hidden; /* prevent body scroll */
     }
 
     @keyframes backgroundShift {
@@ -31,20 +28,15 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1400px;
       width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
 
     .header {
       text-align: center;
       color: white;
-      margin-bottom: 12px;
-      padding-top: 8px;
-      animation: slideDown 0.6s ease;
+      margin-bottom: 60px;
+      animation: slideDown 0.8s ease;
     }
 
     @keyframes slideDown {
@@ -59,17 +51,17 @@
     }
 
     .header h1 {
-      font-size: 2.4rem;
-      margin-bottom: 8px;
-      text-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
-      font-weight: 700;
-      letter-spacing: -0.5px;
+      font-size: 4rem;
+      margin-bottom: 15px;
+      text-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      font-weight: 800;
+      letter-spacing: -1px;
     }
 
     .header p {
-      font-size: 1rem;
+      font-size: 1.3rem;
       opacity: 0.95;
-      margin-bottom: 6px;
+      margin-bottom: 10px;
       font-weight: 300;
     }
 
@@ -80,15 +72,15 @@
     }
 
     .welcome-section {
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.1);
       color: white;
-      padding: 12px 16px;
-      border-radius: 12px;
-      margin-bottom: 18px;
-      backdrop-filter: blur(6px);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 25px;
+      border-radius: 15px;
+      margin-bottom: 50px;
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
       text-align: center;
-      animation: fadeIn 0.8s ease 0.1s both;
+      animation: fadeIn 1s ease 0.2s both;
     }
 
     @keyframes fadeIn {
@@ -121,28 +113,20 @@
 
     .modules-grid {
       display: grid;
-      /* 2 columns, 2 rows max; cards stretch to fill available vertical space */
-      grid-template-columns: repeat(2, minmax(260px, 1fr));
-      grid-auto-rows: 1fr;
-      gap: 18px;
-      margin: 0;
-      flex: 1 1 auto;
-      align-items: stretch;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 40px;
+      margin-bottom: 50px;
     }
 
     .module-card {
       background: white;
-      border-radius: 12px;
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
-      transition: transform 0.18s ease, box-shadow 0.18s ease;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
       cursor: pointer;
-      animation: none;
+      animation: slideUp 0.8s ease 0.5s both;
       position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 0; /* allow grid sizing */
     }
 
     @keyframes slideUp {
@@ -178,15 +162,15 @@
     .module-header {
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      padding: 20px 14px 14px;
+      padding: 50px 20px 30px;
       text-align: center;
     }
 
     .module-icon {
-      font-size: 2.6rem;
-      margin-bottom: 10px;
+      font-size: 5rem;
+      margin-bottom: 15px;
       display: inline-block;
-      animation: none;
+      animation: bounce 2s ease infinite;
     }
 
     @keyframes bounce {
@@ -199,8 +183,8 @@
     }
 
     .module-header h2 {
-      font-size: 1.2rem;
-      margin-bottom: 4px;
+      font-size: 2rem;
+      margin-bottom: 5px;
       font-weight: 700;
     }
 
@@ -211,28 +195,28 @@
     }
 
     .module-content {
-      padding: 14px 16px 18px;
+      padding: 40px;
     }
 
     .module-content p {
       color: #555;
-      line-height: 1.6;
-      margin-bottom: 12px;
-      font-size: 0.98rem;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      font-size: 1.05rem;
     }
 
     .features-list {
       list-style: none;
-      margin: 12px 0;
+      margin: 25px 0;
       text-align: left;
     }
 
     .features-list li {
       color: #666;
-      padding: 6px 0;
-      padding-left: 26px;
+      padding: 12px 0;
+      padding-left: 30px;
       position: relative;
-      font-size: 0.95rem;
+      font-size: 1rem;
       font-weight: 500;
     }
 
@@ -242,8 +226,7 @@
       left: 0;
       color: #667eea;
       font-weight: bold;
-      font-size: 1.05rem;
-      top: 0;
+      font-size: 1.3rem;
     }
 
     .button-group {
@@ -254,17 +237,17 @@
 
     .btn {
       flex: 1;
-      padding: 8px 14px;
+      padding: 14px 28px;
       border: none;
-      border-radius: 8px;
-      font-size: 0.95rem;
+      border-radius: 10px;
+      font-size: 1.05rem;
       cursor: pointer;
-      transition: all 0.18s ease;
+      transition: all 0.3s ease;
       text-decoration: none;
       display: inline-block;
       text-align: center;
       font-weight: 600;
-      letter-spacing: 0.2px;
+      letter-spacing: 0.5px;
     }
 
     .btn-primary {
@@ -328,11 +311,10 @@
     .footer {
       text-align: center;
       color: white;
-      margin-top: 10px;
-      padding-top: 8px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      animation: fadeIn 0.6s ease 0.2s both;
-      font-size: 13px;
+      margin-top: 60px;
+      padding-top: 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
+      animation: fadeIn 1s ease 1s both;
     }
 
     .footer p {
@@ -360,7 +342,7 @@
       opacity: 1;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
       .header h1 {
         font-size: 2.5rem;
       }
@@ -371,7 +353,7 @@
 
       .modules-grid {
         grid-template-columns: 1fr;
-        gap: 20px;
+        gap: 25px;
       }
 
       .button-group {
@@ -379,7 +361,7 @@
       }
 
       .module-header {
-        padding: 14px 12px 10px;
+        padding: 30px 20px 20px;
       }
 
       .module-icon {
@@ -391,7 +373,7 @@
       }
 
       .module-content {
-        padding: 12px 10px 14px;
+        padding: 25px;
       }
 
       .features-list li {
