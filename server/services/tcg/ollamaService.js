@@ -70,7 +70,15 @@ async function generateTestCases(ticketDetails) {
 
   const prompt = buildPrompt(trimmedDetails);
 
+  console.log('[Ollama] Starting test case generation', {
+    ticketId: ticketDetails.ticketId,
+    model,
+    prompt_length: prompt.length,
+    timestamp: new Date().toISOString()
+  });
+
   try {
+    const startTime = Date.now();
     const response = await axios.post(
       apiUrl,
       {
@@ -81,12 +89,21 @@ async function generateTestCases(ticketDetails) {
         num_predict: 300
       },
       {
-        timeout: 120000,
+        timeout: 180000,
         headers: {
           'Content-Type': 'application/json'
         }
       }
     );
+
+    const elapsedTime = Date.now() - startTime;
+    console.log('[Ollama] Request completed successfully', {
+      ticketId: ticketDetails.ticketId,
+      elapsed_ms: elapsedTime,
+      response_length: response.data?.response?.length,
+      model,
+      timestamp: new Date().toISOString()
+    });
 
     const rawText = response.data?.response;
 
@@ -97,12 +114,29 @@ async function generateTestCases(ticketDetails) {
     return parseJsonArray(rawText);
 
   } catch (error) {
+    console.error('[Ollama] Request failed', {
+      ticketId: ticketDetails.ticketId,
+      timestamp: new Date().toISOString(),
+      code: error.code,
+      message: error.message,
+      status: error.status,
+      prompt_length: prompt.length,
+      timeout_config: '180s'
+    });
+
     if (error.code === 'ECONNREFUSED' || error.code === 'EHOSTUNREACH') {
-      throw createError(503, 'Ollama service is unavailable. Ensure it is running.');
+      console.error('[CRITICAL] Ollama service unreachable at', apiUrl);
+      throw createError(503, 'Ollama service is unavailable. Ensure it is running on port 11434.');
     }
 
-    if (error.code === 'ECONNABORTED') {
-      throw createError(504, 'Ollama request timed out. Reduce prompt size or check system performance.');
+    if (error.code === 'ECONNABORTED' || error.code === 'ETIMEDOUT') {
+      console.error('[TIMEOUT] Request exceeded 180 seconds - system may be overloaded');
+      throw createError(504, 'Ollama request timed out (180s limit). Try: 1) Reduce prompt size, 2) Check system resources, 3) Restart Ollama service.');
+    }
+
+    if (error.message && error.message.includes('timeout')) {
+      console.error('[TIMEOUT] Network timeout detected');
+      throw createError(504, 'Request timeout. System may be overloaded or Ollama is not responding.');
     }
 
     throw createError(500, `Ollama error: ${error.message}`);

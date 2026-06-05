@@ -19,11 +19,18 @@ async function fetchJiraStory(ticketId) {
   const authToken = process.env.JIRA_API_TOKEN;
 
   if (!baseUrl || !authEmail || !authToken) {
+    console.error('[JIRA] Missing configuration', {
+      hasBaseUrl: !!baseUrl,
+      hasEmail: !!authEmail,
+      hasToken: !!authToken
+    });
     throw createError(500, 'Missing JIRA configuration in environment variables.');
   }
 
   const url = `${baseUrl.replace(/\/$/, '')}/rest/api/3/issue/${encodeURIComponent(ticketId)}`;
   const auth = Buffer.from(`${authEmail}:${authToken}`).toString('base64');
+
+  console.log('[JIRA] Fetching ticket', { ticketId, timestamp: new Date().toISOString() });
 
   try {
     const response = await axios.get(url, {
@@ -33,7 +40,8 @@ async function fetchJiraStory(ticketId) {
       },
       params: {
         fields: 'summary,description'
-      }
+      },
+      timeout: 30000
     });
 
     const issue = response.data;
@@ -42,6 +50,14 @@ async function fetchJiraStory(ticketId) {
     const description = extractDescription(fields.description);
     const acceptanceCriteria = extractAcceptanceCriteria(fields.description);
 
+    console.log('[JIRA] Ticket fetched successfully', {
+      ticketId,
+      status: response.status,
+      summary,
+      descriptionLength: description.length,
+      hasAcceptanceCriteria: !!acceptanceCriteria
+    });
+
     return {
       ticketId,
       summary,
@@ -49,6 +65,14 @@ async function fetchJiraStory(ticketId) {
       acceptanceCriteria
     };
   } catch (error) {
+    console.error('[JIRA] Fetch failed', {
+      ticketId,
+      code: error.code,
+      status: error.response?.status,
+      message: error.message,
+      timestamp: new Date().toISOString()
+    });
+
     if (error.response && error.response.status === 404) {
       throw createError(404, `JIRA ticket ${ticketId} not found.`);
     }
@@ -110,23 +134,37 @@ function extractAcceptanceCriteria(rawDescription) {
 }
 
 async function verifyJiraCredentials() {
+  console.log('[JIRA] Verifying credentials');
   const baseUrl = process.env.JIRA_BASE_URL;
   const authEmail = process.env.JIRA_EMAIL;
   const authToken = process.env.JIRA_API_TOKEN;
 
   if (!baseUrl || !authEmail || !authToken) {
+    console.error('[JIRA] Missing configuration', {
+      hasBaseUrl: !!baseUrl,
+      hasEmail: !!authEmail,
+      hasToken: !!authToken
+    });
     throw createError(500, 'Missing JIRA configuration in environment variables.');
   }
 
   const url = `${baseUrl.replace(/\/$/, '')}/rest/api/3/myself`;
   const auth = Buffer.from(`${authEmail}:${authToken}`).toString('base64');
 
+  console.log('[JIRA] Testing connection to', url);
+
   try {
     const response = await axios.get(url, {
       headers: {
         Authorization: `Basic ${auth}`,
         Accept: 'application/json'
-      }
+      },
+      timeout: 30000
+    });
+
+    console.log('[JIRA] Authentication successful', {
+      user: response.data.displayName || response.data.emailAddress,
+      email: response.data.emailAddress
     });
 
     return {
@@ -136,6 +174,13 @@ async function verifyJiraCredentials() {
       message: 'JIRA credentials are valid.'
     };
   } catch (error) {
+    console.error('[JIRA] Authentication failed', {
+      code: error.code,
+      status: error.response?.status,
+      message: error.message,
+      timestamp: new Date().toISOString()
+    });
+
     if (error.response && error.response.status === 401) {
       throw createError(401, 'Invalid JIRA credentials. Verify JIRA_EMAIL and JIRA_API_TOKEN.');
     }
