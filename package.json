@@ -1,5 +1,5 @@
 {
-  "name": "autoqa",
+  "name": "qagent",
   "version": "1.0.0",
   "description": "Simple beginner-friendly local AI API testing application",
   "main": "server/index.js",

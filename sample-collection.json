@@ -2,7 +2,7 @@
   "info": {
     "_postman_id": "sample-collection",
     "name": "Sample API Testing Collection",
-    "description": "Sample Postman collection for testing AutoQA. This collection contains examples of different API types.",
+    "description": "Sample Postman collection for testing QAgent. This collection contains examples of different API types.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -85,7 +85,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"title\": \"Test Post\",\n  \"body\": \"This is a test post created by AutoQA\",\n  \"userId\": 1\n}"
+              "raw": "{\n  \"title\": \"Test Post\",\n  \"body\": \"This is a test post created by QAgent\",\n  \"userId\": 1\n}"
             },
             "url": {
               "raw": "https://jsonplaceholder.typicode.com/posts",

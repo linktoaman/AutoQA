@@ -1,13 +1,13 @@
-# AutoQA - Complete File Reference
+# QAgent - Complete File Reference
 
-This document describes every file in the AutoQA project and its purpose.
+This document describes every file in the QAgent project and its purpose.
 
 ---
 
 ## 📂 Project Structure Summary
 
 ```
-AutoQA/
+QAgent/
 ├── server/                           # Backend code
 │   ├── index.js                      # Main server entry point
 │   ├── routes/                       # API routes
@@ -62,13 +62,13 @@ AutoQA/
 
 #### `README.md`
 **Purpose**: Main documentation and quick start guide  
-**For**: First-time users to understand what AutoQA does  
+**For**: First-time users to understand what QAgent does  
 **Contains**: Features, prerequisites, quick start, usage, troubleshooting
 
 #### `SETUP_GUIDE.md`
 **Purpose**: Detailed step-by-step setup instructions for Windows  
 **For**: Users setting up for the first time  
-**Contains**: How to install Node.js, Ollama, and AutoQA
+**Contains**: How to install Node.js, Ollama, and QAgent
 
 #### `EXAMPLES.md`
 **Purpose**: Examples, configurations, and advanced usage  
@@ -77,7 +77,7 @@ AutoQA/
 
 #### `sample-collection.json`
 **Purpose**: Example Postman collection for testing  
-**For**: Testing AutoQA without your own collection  
+**For**: Testing QAgent without your own collection  
 **Contains**: Public APIs (JSONPlaceholder, Random User, etc.)
 
 ---
@@ -385,7 +385,7 @@ Display HTML report in modal
 
 ### Use Different Ollama Model
 **File**: `.env`
-**Change**: `OLLAMA_MODEL=gemma4:e4b` → `OLLAMA_MODEL=mistral`
+**Change**: `OLLAMA_MODEL=gemma4:e4b` → `OLLAMA_MODEL=gemma4:e4b`
 
 ### Change UI Colors
 **File**: `client/styles.css`
@@ -456,7 +456,7 @@ npm start                # Start development server
 ```
 
 ### File Generation
-AutoQA creates these during runtime:
+QAgent creates these during runtime:
 
 ```
 server/uploads/
@@ -471,4 +471,4 @@ server/reports/
 
 ---
 
-**This is a complete guide to every file in AutoQA. Happy coding! 🚀**
+**This is a complete guide to every file in QAgent. Happy coding! 🚀**

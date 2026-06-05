@@ -1,12 +1,12 @@
-# AutoQA - Unified Platform
+# QAgent - Unified Platform
 
 > **Unified platform for API Testing and Test Case Generation using local Ollama LLM**
 
 ## 🎯 Overview
 
-AutoQA is a comprehensive QA automation platform that combines two powerful features:
+A QAgent is a comprehensive QA automation platform that combines two powerful features:
 
-1. **AutoQA - API Testing**: Upload Postman collections and run comprehensive API tests with AI-powered validation
+1. **QAgent - API Testing**: Upload Postman collections and run comprehensive API tests with AI-powered validation
 2. **Test Case Generator (TCG)**: Generate structured test cases from JIRA user stories using AI analysis
 
 Both features are integrated into a single, easy-to-use platform powered by local Ollama LLM.
@@ -15,7 +15,7 @@ Both features are integrated into a single, easy-to-use platform powered by loca
 
 ## ✨ Features
 
-### AutoQA - API Testing
+### QAgent - API Testing
 - 📤 Upload Postman collections
 - 🧪 Run automated API tests
 - 📊 Generate comprehensive test reports
@@ -44,8 +44,8 @@ Both features are integrated into a single, easy-to-use platform powered by loca
 
 ```bash
 # Clone the repository
-git clone https://github.com/linktoaman/AutoQA.git
-cd AutoQA
+git clone https://github.com/linktoaman/QAgent.git
+cd QAgent
 
 # Install dependencies
 npm install
@@ -68,7 +68,7 @@ NODE_ENV=development
 
 # Ollama Configuration
 OLLAMA_API_URL=http://localhost:11434/api/generate
-OLLAMA_MODEL=mistral
+OLLAMA_MODEL=gemma4:e4b
 
 # JIRA Configuration (for Test Case Generator)
 JIRA_BASE_URL=https://your-jira-instance.atlassian.net
@@ -99,7 +99,7 @@ The server will start on `http://localhost:3000`
 - **URL**: `http://localhost:3000/`
 - Main landing page with access to both features
 
-### AutoQA - API Testing
+### QAgent - API Testing
 - **URL**: `http://localhost:3000/app`
 - Upload a Postman collection
 - View parsed APIs
@@ -116,13 +116,13 @@ The server will start on `http://localhost:3000`
 ## 🏗️ Project Structure
 
 ```
-AutoQA/
+QAgent/
 ├── client/
-│   ├── index.html                    # AutoQA Frontend
+│   ├── index.html                    # QAgent Frontend
 │   ├── index-unified.html            # Unified Dashboard
 │   ├── tcg.html                      # Test Case Generator Frontend
-│   ├── app.js                        # AutoQA Frontend Logic
-│   └── styles.css                    # AutoQA Styles
+│   ├── app.js                        # QAgent Frontend Logic
+│   └── styles.css                    # QAgent Styles
 │
 ├── server/
 │   ├── index.js                      # Main Server Entry Point
@@ -137,7 +137,7 @@ AutoQA/
 │   │   ├── apiExecutor.js            # API Test Executor
 │   │   ├── postmanParser.js          # Postman Collection Parser
 │   │   ├── reportGenerator.js        # HTML Report Generator
-│   │   ├── ollamaService.js          # Ollama Integration (AutoQA)
+│   │   ├── ollamaService.js          # Ollama Integration (QAgent)
 │   │   └── tcg/
 │   │       ├── jiraService.js        # JIRA Integration
 │   │       └── ollamaService.js      # Ollama Integration (TCG)
@@ -162,7 +162,7 @@ AutoQA/
 
 ## 🔌 API Endpoints
 
-### AutoQA Endpoints
+### QAgent Endpoints
 
 **Upload Postman Collection**
 ```
@@ -213,7 +213,7 @@ GET /api/tcg/verify-jira
 # https://ollama.ai
 
 # Pull a model
-ollama pull mistral
+ollama pull gemma4:e4b
 
 # Run Ollama
 ollama serve
@@ -256,7 +256,7 @@ ollama serve
 
 ## 📝 Examples
 
-### Running AutoQA Tests
+### Running QAgent Tests
 
 ```javascript
 // Upload a Postman collection and run tests
@@ -329,7 +329,7 @@ MIT License - See LICENSE file for details
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/linktoaman/AutoQA)
+- [GitHub Repository](https://github.com/linktoaman/QAgent)
 - [Ollama](https://ollama.ai)
 - [Postman](https://www.postman.com)
 - [JIRA](https://www.atlassian.com/software/jira)
@@ -339,7 +339,7 @@ MIT License - See LICENSE file for details
 ## 📞 Support
 
 For issues and questions:
-- GitHub Issues: https://github.com/linktoaman/AutoQA/issues
+- GitHub Issues: https://github.com/linktoaman/QAgent/issues
 - Email: your-email@example.com
 
 ---

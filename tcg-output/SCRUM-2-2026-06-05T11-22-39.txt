@@ -1,0 +1,26 @@
+Test Case 1 (SCRUM-2_POS_001)
+Title: Verify successful retrieval of all products using GET request
+Type: functional
+
+Preconditions:
+Valid API endpoint is accessible. Authentication token (if required) is available.
+
+Steps:
+1. Send a GET request to https://qa.abcorp.com/v1/getAllProducts
+
+Expected Result:
+The API should return a status code of 200 OK, and the response body should contain an array of product objects.
+
+------------------------------------------------------------
+Test Case 2 (SCRUM-2_NEG_001)
+Title: Attempt to retrieve products using invalid endpoint path
+Type: functional
+
+Preconditions:
+Network connection is active.
+
+Steps:
+1. Send a GET request to https://qa.abcorp.com/v1/getAllProducts/invalid_suffix
+
+Expected Result:
+The API should return a client error status code (e.g., 404 Not Found) indicating the endpoint does not exist.

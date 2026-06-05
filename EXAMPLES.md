@@ -1,4 +1,4 @@
-# AutoQA Examples and Configuration Guide
+# QAgent Examples and Configuration Guide
 
 This file contains example prompts, configurations, and troubleshooting information.
 
@@ -6,9 +6,9 @@ This file contains example prompts, configurations, and troubleshooting informat
 
 ## 🧠 Ollama Integration Examples
 
-### How AutoQA Uses Ollama
+### How QAgent Uses Ollama
 
-AutoQA sends API details to Ollama and asks it to generate test cases. Here's how it works:
+QAgent sends API details to Ollama and asks it to generate test cases. Here's how it works:
 
 ### Example Prompt Sent to Ollama
 
@@ -109,7 +109,7 @@ PORT=8080
 PORT=3001
 ```
 
-Then restart AutoQA: `npm start`
+Then restart QAgent: `npm start`
 
 ### Using Different Ollama Model
 
@@ -122,7 +122,7 @@ OLLAMA_MODEL=gemma4:e4b
 # Use different models:
 OLLAMA_MODEL=llama2
 OLLAMA_MODEL=neural-chat
-OLLAMA_MODEL=mistral
+OLLAMA_MODEL=gemma4:e4b
 ```
 
 Note: You need to have the model installed in Ollama first.
@@ -136,7 +136,7 @@ Note: You need to have the model installed in Ollama first.
 REPORTS_DIR=./server/reports
 
 # Change to custom location
-REPORTS_DIR=C:\Reports\AutoQA
+REPORTS_DIR=C:\Reports\QAgent
 ```
 
 ### Change Upload Folder
@@ -158,9 +158,9 @@ UPLOADS_DIR=C:\Uploads\Collections
 ### What the Report Contains
 
 ```
-AutoQA Test Report
+QAgent Test Report
 ├── Header
-│   ├── Title: "AutoQA Test Report"
+│   ├── Title: "QAgent Test Report"
 │   └── Subtitle: "Automated API Testing Results"
 │
 ├── Statistics
@@ -187,7 +187,7 @@ AutoQA Test Report
 │
 └── Footer
     ├── Generated Date/Time
-    └── AutoQA Version Info
+    └── QAgent Version Info
 ```
 
 ---
@@ -402,7 +402,7 @@ Include API keys in Postman collection headers:
 }
 ```
 
-AutoQA will use them in tests.
+QAgent will use them in tests.
 
 ### 2. File Upload Security
 
@@ -420,9 +420,9 @@ AutoQA will use them in tests.
 
 ## 📝 Log File Locations
 
-### AutoQA Server Logs
+### QAgent Server Logs
 
-Check Command Prompt running AutoQA server:
+Check Command Prompt running QAgent server:
 
 ```
 [Timestamp] GET /api/health - 200 OK
@@ -449,7 +449,7 @@ time=2024-01-01T12:00:00.000Z level=INFO msg="listening on [::]:11434"
 1. Export Postman collection from your internal API
 2. Make sure API is running and accessible
 3. Include authentication headers in Postman
-4. Upload collection to AutoQA
+4. Upload collection to QAgent
 5. Generate and run tests
 6. Review report
 ```
@@ -459,7 +459,7 @@ time=2024-01-01T12:00:00.000Z level=INFO msg="listening on [::]:11434"
 ```
 1. Create Postman collection of critical APIs
 2. Export to JSON
-3. Upload to AutoQA
+3. Upload to QAgent
 4. Run tests regularly
 5. Compare reports over time
 6. Catch breaking changes early
@@ -470,7 +470,7 @@ time=2024-01-01T12:00:00.000Z level=INFO msg="listening on [::]:11434"
 ```
 1. Convert API documentation to Postman collection
 2. Export to JSON
-3. Upload to AutoQA
+3. Upload to QAgent
 4. Run tests to verify documentation accuracy
 5. Report shows which endpoints work as documented
 ```

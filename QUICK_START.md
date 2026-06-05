@@ -1,6 +1,6 @@
-# AutoQA - Quick Start (60 Seconds)
+# QAgent - Quick Start (60 Seconds)
 
-Get AutoQA running in less than a minute!
+Get QAgent running in less than a minute!
 
 ---
 
@@ -13,7 +13,7 @@ Get AutoQA running in less than a minute!
 
 ---
 
-## 🚀 Start AutoQA
+## 🚀 Start QAgent
 
 ### Terminal 1: Ollama
 ```
@@ -21,11 +21,11 @@ ollama serve
 ```
 Leave this running.
 
-### Terminal 2: AutoQA
+### Terminal 2: Project (QAgent)
 
-Navigate to AutoQA folder:
+Navigate to the project folder (e.g., QAgent):
 ```
-cd C:\path\to\AutoQA
+cd C:\path\to\QAgent
 ```
 
 Install dependencies (first time only):
@@ -54,7 +54,7 @@ Open: `http://localhost:3000`
 
 ## 🎉 Done!
 
-That's it! AutoQA will:
+That's it! QAgent will:
 - Generate test cases with AI
 - Execute all tests
 - Create beautiful HTML report

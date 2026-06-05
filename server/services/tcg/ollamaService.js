@@ -54,7 +54,7 @@ function parseJsonArray(text) {
 
 async function generateTestCases(ticketDetails) {
   const apiUrl = process.env.OLLAMA_API_URL || 'http://localhost:11434/api/generate';
-  const model = process.env.OLLAMA_MODEL || 'mistral';
+  const model = process.env.OLLAMA_MODEL || 'gemma4:e4b';
 
   if (!ticketDetails || !ticketDetails.ticketId) {
     throw createError(400, 'Missing ticket details for LLM generation.');

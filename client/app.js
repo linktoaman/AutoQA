@@ -1,5 +1,5 @@
 // ============================================
-// AutoQA Frontend Application
+// QAgent Frontend Application
 // ============================================
 // This is the main frontend JavaScript file.
 // It handles all user interactions and communicates with the backend.
@@ -538,7 +538,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Initial log
-  addLog('AutoQA ready! Upload a Postman collection to begin.', 'info');
+  addLog('QAgent ready! Upload a Postman collection to begin.', 'info');
 });
 
 // ============================================

@@ -1,5 +1,5 @@
 // ============================================
-// AutoQA - Main Server File (index.js)
+// QAgent - Main Server File (index.js)
 // ============================================
 // This is the main entry point for the Express server.
 // It sets up the server, configures middleware, and defines routes.
@@ -59,7 +59,7 @@ app.use('/api/tcg', tcgRoutes);
 app.get('/api/health', (req, res) => {
   res.json({
     status: 'success',
-    message: 'AutoQA Server is running!',
+    message: 'QAgent Server is running!',
     timestamp: new Date().toISOString()
   });
 });
@@ -72,7 +72,7 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index-unified.html'));
 });
 
-// AutoQA - API Testing Interface
+// QAgent - API Testing Interface
 app.get('/app', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index.html'));
 });
@@ -80,6 +80,11 @@ app.get('/app', (req, res) => {
 // Test Case Generator Interface
 app.get('/tcg', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/tcg.html'));
+});
+
+// Explicit Home route (alternate to `/`) so users can visit `/home`
+app.get('/home', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/index-unified.html'));
 });
 
 // ============================================
@@ -102,14 +107,14 @@ app.use((err, req, res, next) => {
 app.listen(PORT, () => {
   console.log(`
 ╔════════════════════════════════════════════════════╗
-║  AutoQA + Test Case Generator Started! 🚀         ║
+║  QAgent + Test Case Generator Started! 🚀         ║
 ╠════════════════════════════════════════════════════╣
 ║  Server: http://localhost:${PORT}                  ║
 ║  Environment: ${process.env.NODE_ENV || 'development'}                       ║
 ║  Ollama: ${process.env.OLLAMA_API_URL}             ║
 ║                                                    ║
 ║  Features:                                         ║
-║  - API Testing (AutoQA) - /api/test               ║
+║  - API Testing (QAgent) - /api/test               ║
 ║  - Report Generation - /api/report                ║
 ║  - Test Case Generation (TCG) - /api/tcg          ║
 ╚════════════════════════════════════════════════════╝

@@ -1,6 +1,6 @@
-# AutoQA - Detailed Setup Guide for Windows
+# QAgent - Detailed Setup Guide for Windows
 
-This guide will help you set up AutoQA step-by-step on Windows.
+This guide will help you set up QAgent step-by-step on Windows.
 
 ---
 
@@ -77,22 +77,22 @@ Ollama is a local Large Language Model (LLM) that runs on your computer. It's us
 
 ---
 
-## 📦 Step 3: Set Up AutoQA Project
+## 📦 Step 3: Set Up QAgent Project
 
 ### Clone or Download
 
-1. Download AutoQA project
-2. Extract it to a location like `C:\Users\YourUsername\Documents\AutoQA`
+1. Download QAgent project
+2. Extract it to a location like `C:\Users\YourUsername\Documents\QAgent`
 3. Note the path for later
 
 ### Open Command Prompt in Project Directory
 
-1. Go to your AutoQA folder
+1. Go to your QAgent folder
 2. Right-click in empty space
 3. Click "Open PowerShell here" (or "Open Command Prompt here")
 4. Or manually:
    - Open Command Prompt
-   - Type: `cd C:\Users\YourUsername\Documents\AutoQA`
+   - Type: `cd C:\Users\YourUsername\Documents\QAgent`
    - Press Enter
 
 ### Install Dependencies
@@ -119,16 +119,16 @@ Ollama is a local Large Language Model (LLM) that runs on your computer. It's us
    ```
 4. If it responds with JSON, Ollama is running ✓
 
-### Terminal 2: Start AutoQA Server
+### Terminal 2: Start QAgent Server
 
 1. Open a new Command Prompt
-2. Navigate to AutoQA folder: `cd C:\path\to\AutoQA`
+2. Navigate to QAgent folder: `cd C:\path\to\QAgent`
 3. Type: `npm start`
 4. Press Enter
 5. Wait for the message:
    ```
    ╔════════════════════════════════════╗
-   ║  AutoQA Server Started! 🚀         ║
+   ║  QAgent Server Started! 🚀         ║
    ╠════════════════════════════════════╣
    ║  Server: http://localhost:3000     ║
    ║  Environment: development          ║
@@ -138,16 +138,16 @@ Ollama is a local Large Language Model (LLM) that runs on your computer. It's us
 
 ---
 
-## 🌐 Step 5: Access AutoQA
+## 🌐 Step 5: Access QAgent
 
 1. Open your browser (Chrome, Edge, Firefox, etc.)
 2. Go to: `http://localhost:3000`
-3. You should see the AutoQA interface
+3. You should see the QAgent interface
 4. It's ready to use!
 
 ---
 
-## 📝 How to Use AutoQA
+## 📝 How to Use QAgent
 
 ### 1. Get a Postman Collection
 
@@ -160,11 +160,11 @@ Ollama is a local Large Language Model (LLM) that runs on your computer. It's us
 6. Save the file
 
 #### Option B: Use Sample Collection
-We've included `sample-collection.json` in the AutoQA folder. You can use this to test.
+We've included `sample-collection.json` in the QAgent folder. You can use this to test.
 
 ### 2. Upload Collection
 
-1. On AutoQA homepage
+1. On QAgent homepage
 2. Click "Choose File" or drag-and-drop your JSON file
 3. Wait for parsing
 4. You'll see a list of APIs from your collection
@@ -173,7 +173,7 @@ We've included `sample-collection.json` in the AutoQA folder. You can use this t
 
 1. Click "Run Tests" button
 2. Watch the progress in the testing section
-3. AutoQA will:
+3. QAgent will:
    - Generate test cases for each API
    - Execute each test
    - Collect results
@@ -210,7 +210,7 @@ Error: Failed to connect to Ollama at http://localhost:11434
 **Solution:**
 - Another application is using port 3000
 - Edit `.env` file and change `PORT=3000` to `PORT=3001`
-- Save and restart AutoQA
+- Save and restart QAgent
 
 ### Issue: "Cannot find module"
 **Solution:**
@@ -219,7 +219,7 @@ Error: Failed to connect to Ollama at http://localhost:11434
 
 ### Issue: Browser shows "Cannot reach localhost:3000"
 **Solution:**
-1. Make sure AutoQA server is running (check Command Prompt)
+1. Make sure QAgent server is running (check Command Prompt)
 2. Wait 5 seconds and refresh browser (F5)
 3. Try: `http://127.0.0.1:3000` instead
 4. Check if firewall is blocking port 3000
@@ -237,17 +237,17 @@ Error: Failed to connect to Ollama at http://localhost:11434
 
 After running tests, check these folders:
 
-- **Uploaded Collections**: `AutoQA\server\uploads\`
-- **Generated Reports**: `AutoQA\server\reports\`
+- **Uploaded Collections**: `QAgent\server\uploads\`
+- **Generated Reports**: `QAgent\server\reports\`
 
 You can open reports in any web browser.
 
 ---
 
-## 🛑 How to Stop AutoQA
+## 🛑 How to Stop QAgent
 
-### Stop AutoQA Server
-- In Command Prompt running AutoQA
+### Stop QAgent Server
+- In Command Prompt running QAgent
 - Press: `Ctrl + C`
 - Type: `Y` and press Enter
 
@@ -260,13 +260,13 @@ You can open reports in any web browser.
 ## ⚡ Quick Commands Reference
 
 ```powershell
-# Navigate to AutoQA folder
-cd C:\path\to\AutoQA
+# Navigate to QAgent folder
+cd C:\path\to\QAgent
 
 # Install dependencies (first time only)
 npm install
 
-# Start AutoQA server
+# Start QAgent server
 npm start
 
 # Check Node.js version
@@ -294,12 +294,12 @@ ollama serve
 
 1. **Keep Multiple Windows Open**
    - One for Ollama
-   - One for AutoQA server
+   - One for QAgent server
    - Browser for interface
    - This helps you see logs and errors
 
 2. **Check Logs**
-   - AutoQA server shows logs in Command Prompt
+   - QAgent server shows logs in Command Prompt
    - Look for errors if something doesn't work
 
 3. **Use Sample Collection First**
@@ -325,9 +325,9 @@ Terminal 1:
 [Ollama running]
 
 Terminal 2:
-> cd C:\Users\YourUsername\Documents\AutoQA
+> cd C:\Users\YourUsername\Documents\QAgent
 > npm start
-[AutoQA running on http://localhost:3000]
+[QAgent running on http://localhost:3000]
 
 Browser:
 Go to http://localhost:3000
@@ -338,7 +338,7 @@ Upload collection and run tests!
 
 ## ✨ You're All Set!
 
-Your AutoQA setup is complete. Follow the "How to Use" section above to start testing APIs.
+Your QAgent setup is complete. Follow the "How to Use" section above to start testing APIs.
 
 Happy Testing! 🎉
 
