@@ -14,6 +14,7 @@ require('dotenv').config();
 const uploadRoutes = require('./routes/upload');
 const testRoutes = require('./routes/test');
 const reportRoutes = require('./routes/report');
+const automationRoutes = require('./routes/automation');
 const tcgRoutes = require('./routes/tcg/testCaseRoutes');
 
 // ============================================
@@ -50,6 +51,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api/upload', uploadRoutes);
 app.use('/api/test', testRoutes);
 app.use('/api/report', reportRoutes);
+app.use('/api/automation', automationRoutes);
 app.use('/api/tcg', tcgRoutes);
 
 // ============================================
@@ -82,6 +84,10 @@ app.get('/tcg', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/tcg.html'));
 });
 
+app.get('/automation', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/automation.html'));
+});
+
 // Explicit Home route (alternate to `/`) so users can visit `/home`
 app.get('/home', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/index-unified.html'));
@@ -105,16 +111,24 @@ app.use((err, req, res, next) => {
 // ============================================
 // Listen on the PORT specified in .env or default 3000
 app.listen(PORT, () => {
+  const selectedProvider = process.env.AI_PROVIDER || 'ollama';
+  const providerEndpoint = selectedProvider === 'ollama'
+    ? process.env.OLLAMA_API_URL || 'http://localhost:11434/api/generate'
+    : selectedProvider === 'gemini'
+      ? process.env.GEMINI_API_URL || `https://gemini.googleapis.com/v1/models/${process.env.GEMINI_MODEL || 'gemini-1.5-mini'}:generate`
+      : '';
+
   console.log(`
 ╔════════════════════════════════════════════════════╗
 ║  QAgent + Test Case Generator Started! 🚀         ║
 ╠════════════════════════════════════════════════════╣
 ║  Server: http://localhost:${PORT}                  ║
 ║  Environment: ${process.env.NODE_ENV || 'development'}                       ║
-║  Ollama: ${process.env.OLLAMA_API_URL}             ║
+║  AI Provider: ${selectedProvider}${providerEndpoint ? ` (${providerEndpoint})` : ''}             ║
 ║                                                    ║
 ║  Features:                                         ║
 ║  - API Testing (QAgent) - /api/test               ║
+║  - Automation Testing - /api/automation          ║
 ║  - Report Generation - /api/report                ║
 ║  - Test Case Generation (TCG) - /api/tcg          ║
 ╚════════════════════════════════════════════════════╝

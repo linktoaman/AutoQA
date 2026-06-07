@@ -13,10 +13,10 @@ function createError(status, message) {
  * Fetch a JIRA issue by ticket key and return relevant fields.
  * @param {string} ticketId
  */
-async function fetchJiraStory(ticketId) {
-  const baseUrl = process.env.JIRA_BASE_URL;
-  const authEmail = process.env.JIRA_EMAIL;
-  const authToken = process.env.JIRA_API_TOKEN;
+function resolveJiraConfig(config = {}) {
+  const baseUrl = config.baseUrl?.trim() || process.env.JIRA_BASE_URL;
+  const authEmail = config.email?.trim() || process.env.JIRA_EMAIL;
+  const authToken = config.apiToken?.trim() || process.env.JIRA_API_TOKEN;
 
   if (!baseUrl || !authEmail || !authToken) {
     console.error('[JIRA] Missing configuration', {
@@ -24,8 +24,14 @@ async function fetchJiraStory(ticketId) {
       hasEmail: !!authEmail,
       hasToken: !!authToken
     });
-    throw createError(500, 'Missing JIRA configuration in environment variables.');
+    throw createError(500, 'Missing JIRA configuration. Provide JIRA_BASE_URL, JIRA_EMAIL, and JIRA_API_TOKEN.');
   }
+
+  return { baseUrl, authEmail, authToken };
+}
+
+async function fetchJiraStory(ticketId, config = {}) {
+  const { baseUrl, authEmail, authToken } = resolveJiraConfig(config);
 
   const url = `${baseUrl.replace(/\/$/, '')}/rest/api/3/issue/${encodeURIComponent(ticketId)}`;
   const auth = Buffer.from(`${authEmail}:${authToken}`).toString('base64');
@@ -133,20 +139,9 @@ function extractAcceptanceCriteria(rawDescription) {
   return '';
 }
 
-async function verifyJiraCredentials() {
+async function verifyJiraCredentials(config = {}) {
   console.log('[JIRA] Verifying credentials');
-  const baseUrl = process.env.JIRA_BASE_URL;
-  const authEmail = process.env.JIRA_EMAIL;
-  const authToken = process.env.JIRA_API_TOKEN;
-
-  if (!baseUrl || !authEmail || !authToken) {
-    console.error('[JIRA] Missing configuration', {
-      hasBaseUrl: !!baseUrl,
-      hasEmail: !!authEmail,
-      hasToken: !!authToken
-    });
-    throw createError(500, 'Missing JIRA configuration in environment variables.');
-  }
+  const { baseUrl, authEmail, authToken } = resolveJiraConfig(config);
 
   const url = `${baseUrl.replace(/\/$/, '')}/rest/api/3/myself`;
   const auth = Buffer.from(`${authEmail}:${authToken}`).toString('base64');

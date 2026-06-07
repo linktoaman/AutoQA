@@ -410,6 +410,7 @@ async function handleViewReport() {
   try {
     addLog('Generating detailed HTML report...', 'info');
     updateProgressText('Generating HTML report...');
+    console.log('[View Report] Starting report generation', { testResultsId: state.currentTestResultsId });
 
     const progressPromise = pollProgress(state.currentSessionId, ['completed', 'error']);
 
@@ -418,6 +419,8 @@ async function handleViewReport() {
     const finalProgress = await progressPromise;
     stopProgressPolling();
 
+    console.log('[View Report] Generation response:', response);
+
     if (finalProgress) {
       updateProgress(finalProgress.percentage);
       updateProgressText(`${finalProgress.message} (${Math.round(finalProgress.percentage)}%)`);
@@ -425,21 +428,35 @@ async function handleViewReport() {
 
     if (response.status === 'success') {
       state.currentReportFilename = response.reportFilename;
-
       addLog('✓ Report generated successfully!', 'success');
 
       // Display report in modal
       const reportWindow = document.getElementById('reportWindow');
       const reportFrame = document.getElementById('reportFrame');
-      reportFrame.src = `/api/report/view/${response.reportFilename}`;
+      const reportUrl = `/api/report/view/${response.reportFilename}`;
+      console.log('[View Report] Loading report', { url: reportUrl, filename: response.reportFilename });
+      
+      // Add error handling for iframe
+      reportFrame.onerror = () => {
+        console.error('[View Report] iframe failed to load:', { url: reportUrl });
+        addLog('✗ Failed to load report. Please try again.', 'error');
+      };
+      
+      reportFrame.onload = () => {
+        console.log('[View Report] iframe loaded successfully');
+      };
+      
+      reportFrame.src = reportUrl;
       reportWindow.style.display = 'flex';
+      
+      addLog('✓ Report window opened. Report is loading...', 'success');
     } else {
-      throw new Error(response.message);
+      throw new Error(response.message || 'Failed to generate report');
     }
   } catch (error) {
     stopProgressPolling();
+    console.error('[View Report] Error:', error);
     addLog(`✗ Report generation error: ${error.message}`, 'error');
-    console.error('Report generation error:', error);
   }
 }
 

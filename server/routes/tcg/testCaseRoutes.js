@@ -4,14 +4,14 @@ const testCaseController = require('../../controllers/tcg/testCaseController');
 
 /**
  * Generate test cases from a JIRA ticket
- * GET /api/tcg/generate-testcases?ticketId=JIRA-123
+ * POST /api/tcg/generate-testcases
  */
-router.get('/generate-testcases', testCaseController.handleGenerateTestCases);
+router.post('/generate-testcases', testCaseController.handleGenerateTestCases);
 
 /**
  * Verify JIRA credentials
- * GET /api/tcg/verify-jira
+ * POST /api/tcg/verify-jira
  */
-router.get('/verify-jira', testCaseController.handleVerifyJira);
+router.post('/verify-jira', testCaseController.handleVerifyJira);
 
 module.exports = router;

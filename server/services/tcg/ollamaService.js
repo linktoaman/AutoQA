@@ -1,5 +1,16 @@
+// ============================================
+// AI-backed TCG Service
+// ============================================
+// Generates JIRA-driven test cases using the configured AI provider (Ollama, ChatGPT, or Gemini).
 const axios = require('axios');
 const { createError } = require('./jiraService');
+const { callChatGPT } = require('../chatgptService');
+const { callGemini } = require('../geminiService');
+
+const AI_PROVIDER = process.env.AI_PROVIDER || 'ollama';
+const useChatGPT = AI_PROVIDER === 'chatgpt';
+const useGemini = AI_PROVIDER === 'gemini';
+const providerName = useChatGPT ? 'ChatGPT' : useGemini ? 'Gemini' : 'Ollama';
 
 const defaultPrompt = `You are a test case generator.
 
@@ -46,7 +57,7 @@ function buildPrompt(ticket) {
 function parseJsonArray(text) {
   const jsonMatch = text.match(/\[[\s\S]*\]/);
   if (!jsonMatch) {
-    throw new Error('No JSON array found in Ollama response');
+    throw new Error(`No JSON array found in ${providerName} response`);
   }
 
   return JSON.parse(jsonMatch[0]);
@@ -54,7 +65,7 @@ function parseJsonArray(text) {
 
 async function generateTestCases(ticketDetails) {
   const apiUrl = process.env.OLLAMA_API_URL || 'http://localhost:11434/api/generate';
-  const model = process.env.OLLAMA_MODEL || 'gemma4:e4b';
+  const model = useGemini ? process.env.GEMINI_MODEL || 'gemini-1.5-mini' : process.env.OLLAMA_MODEL || 'gemma4:e4b';
 
   if (!ticketDetails || !ticketDetails.ticketId) {
     throw createError(400, 'Missing ticket details for LLM generation.');
@@ -70,7 +81,7 @@ async function generateTestCases(ticketDetails) {
 
   const prompt = buildPrompt(trimmedDetails);
 
-  console.log('[Ollama] Starting test case generation', {
+  console.log(`[${providerName}] Starting test case generation`, {
     ticketId: ticketDetails.ticketId,
     model,
     prompt_length: prompt.length,
@@ -79,42 +90,52 @@ async function generateTestCases(ticketDetails) {
 
   try {
     const startTime = Date.now();
-    const response = await axios.post(
-      apiUrl,
-      {
-        model,
-        prompt,
-        temperature: 0.2,
-        stream: false,
-        num_predict: 300
-      },
-      {
-        timeout: 180000,
-        headers: {
-          'Content-Type': 'application/json'
+    let response;
+    let rawText;
+
+    if (useChatGPT) {
+      rawText = await callChatGPT(prompt);
+      response = { data: { response: rawText } };
+    } else if (useGemini) {
+      rawText = await callGemini(prompt);
+      response = { data: { response: rawText } };
+    } else {
+      response = await axios.post(
+        apiUrl,
+        {
+          model,
+          prompt,
+          temperature: 0.2,
+          stream: false,
+          num_predict: 300
+        },
+        {
+          timeout: 180000,
+          headers: {
+            'Content-Type': 'application/json'
+          }
         }
-      }
-    );
+      );
+      rawText = response.data?.response;
+    }
 
     const elapsedTime = Date.now() - startTime;
-    console.log('[Ollama] Request completed successfully', {
+    console.log(`[${providerName}] Request completed successfully`, {
       ticketId: ticketDetails.ticketId,
       elapsed_ms: elapsedTime,
-      response_length: response.data?.response?.length,
+      response_length: rawText?.length,
       model,
       timestamp: new Date().toISOString()
     });
 
-    const rawText = response.data?.response;
-
     if (!rawText) {
-      throw new Error('Empty response from Ollama');
+      throw new Error(`Empty response from ${providerName}`);
     }
 
     return parseJsonArray(rawText);
 
   } catch (error) {
-    console.error('[Ollama] Request failed', {
+    console.error(`[${providerName}] Request failed`, {
       ticketId: ticketDetails.ticketId,
       timestamp: new Date().toISOString(),
       code: error.code,
@@ -124,22 +145,22 @@ async function generateTestCases(ticketDetails) {
       timeout_config: '180s'
     });
 
-    if (error.code === 'ECONNREFUSED' || error.code === 'EHOSTUNREACH') {
+    if (!useChatGPT && !useGemini && (error.code === 'ECONNREFUSED' || error.code === 'EHOSTUNREACH')) {
       console.error('[CRITICAL] Ollama service unreachable at', apiUrl);
       throw createError(503, 'Ollama service is unavailable. Ensure it is running on port 11434.');
     }
 
-    if (error.code === 'ECONNABORTED' || error.code === 'ETIMEDOUT') {
+    if (!useChatGPT && !useGemini && (error.code === 'ECONNABORTED' || error.code === 'ETIMEDOUT')) {
       console.error('[TIMEOUT] Request exceeded 180 seconds - system may be overloaded');
       throw createError(504, 'Ollama request timed out (180s limit). Try: 1) Reduce prompt size, 2) Check system resources, 3) Restart Ollama service.');
     }
 
     if (error.message && error.message.includes('timeout')) {
       console.error('[TIMEOUT] Network timeout detected');
-      throw createError(504, 'Request timeout. System may be overloaded or Ollama is not responding.');
+      throw createError(504, 'Request timeout. System may be overloaded or not responding.');
     }
 
-    throw createError(500, `Ollama error: ${error.message}`);
+    throw createError(500, `${providerName} error: ${error.message}`);
   }
 }
 

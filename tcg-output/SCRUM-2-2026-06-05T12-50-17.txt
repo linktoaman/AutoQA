@@ -1,0 +1,26 @@
+Test Case 1 (SCRUM-2-P-001)
+Title: Verify successful retrieval of all products with valid credentials
+Type: functional
+
+Preconditions:
+The user has valid API credentials (if required) and the API service is running.
+
+Steps:
+1. Send a GET request to the URL: https://qa.abcorp.com/v1/getAllProducts
+
+Expected Result:
+The API should return a status code 200 OK, and the response body should contain an array of products (e.g., [{productName: '...', id: 1}, ...]).
+
+------------------------------------------------------------
+Test Case 2 (SCRUM-2-N-001)
+Title: Verify error handling when requesting a non-existent path
+Type: functional
+
+Preconditions:
+The user does not possess valid API credentials (if required).
+
+Steps:
+1. Send a GET request to a modified/incorrect URL, e.g., https://qa.abcorp.com/v1/getAllProductsIncorrect
+
+Expected Result:
+The API should return a client error status code (e.g., 404 Not Found) and a descriptive error message indicating the resource was not found.

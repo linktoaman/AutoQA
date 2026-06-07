@@ -245,7 +245,19 @@
     <div class="section">
       <h2>Configuration</h2>
       <div class="config-hint">
-        <strong>ℹ️ Configuration Required:</strong> Set JIRA_BASE_URL, JIRA_EMAIL, and JIRA_API_TOKEN in your .env file to enable JIRA integration.
+        <strong>ℹ️ Configuration Required:</strong> Enter JIRA credentials below or use values from your .env file.
+      </div>
+      <div class="form-group">
+        <label for="jiraBaseUrl">JIRA Base URL</label>
+        <input type="text" id="jiraBaseUrl" placeholder="https://yourcompany.atlassian.net" />
+      </div>
+      <div class="form-group">
+        <label for="jiraEmail">JIRA Email</label>
+        <input type="email" id="jiraEmail" placeholder="your.email@company.com" />
+      </div>
+      <div class="form-group">
+        <label for="jiraApiToken">JIRA API Token</label>
+        <input type="password" id="jiraApiToken" placeholder="••••••••••••••••" />
       </div>
       <button class="btn btn-primary" onclick="verifyJiraCredentials()">Verify JIRA Credentials</button>
       <div id="jiraStatus" class="status-message" style="margin-top: 15px;"></div>
@@ -276,9 +288,22 @@
   </div>
 
   <script>
+    function readJiraConfig() {
+      return {
+        baseUrl: document.getElementById('jiraBaseUrl').value.trim(),
+        email: document.getElementById('jiraEmail').value.trim(),
+        apiToken: document.getElementById('jiraApiToken').value.trim()
+      };
+    }
+
     async function verifyJiraCredentials() {
       try {
-        const response = await fetch('/api/tcg/verify-jira');
+        const jiraConfig = readJiraConfig();
+        const response = await fetch('/api/tcg/verify-jira', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(jiraConfig)
+        });
         const data = await response.json();
 
         const statusEl = document.getElementById('jiraStatus');
@@ -298,17 +323,21 @@
 
     async function generateTestCases() {
       const ticketId = document.getElementById('ticketId').value.trim();
-      
       if (!ticketId) {
         showStatus('Please enter a JIRA ticket ID', 'error');
         return;
       }
 
+      const jiraConfig = readJiraConfig();
       showLoader(true);
       showStatus('');
 
       try {
-        const response = await fetch(`/api/tcg/generate-testcases?ticketId=${encodeURIComponent(ticketId)}`);
+        const response = await fetch('/api/tcg/generate-testcases', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ ticketId, ...jiraConfig })
+        });
         const data = await response.json();
 
         showLoader(false);

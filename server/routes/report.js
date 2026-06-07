@@ -78,7 +78,9 @@ router.post('/generate', (req, res) => {
 
     // Save report to file
     const reportFilename = `report-${Date.now()}.html`;
+    console.log('[Report] Saving report to file', { reportFilename, htmlSize: htmlReport.length });
     const reportPath = saveReport(htmlReport, reportFilename);
+    console.log('[Report] Report saved successfully', { reportPath, fileExists: fs.existsSync(reportPath) });
 
     // Store report metadata
     const reportMetadata = {
@@ -181,8 +183,11 @@ router.get('/view/:reportFilename', (req, res) => {
   try {
     const { reportFilename } = req.params;
 
+    console.log('[Report View] Requested report', { reportFilename });
+
     // Security: validate filename to prevent directory traversal
     if (reportFilename.includes('..') || reportFilename.includes('/') || reportFilename.includes('\\')) {
+      console.warn('[Report View] Invalid filename attempted', { reportFilename });
       return res.status(400).json({
         status: 'error',
         message: 'Invalid report filename'
@@ -190,21 +195,38 @@ router.get('/view/:reportFilename', (req, res) => {
     }
 
     const reportPath = path.join(reportsDir, reportFilename);
+    console.log('[Report View] Looking for file', { reportPath, exists: fs.existsSync(reportPath) });
 
     if (!fs.existsSync(reportPath)) {
+      console.warn('[Report View] Report file not found', { reportPath, reportsDir });
+      // List available reports for debugging
+      try {
+        const availableReports = fs.readdirSync(reportsDir);
+        console.log('[Report View] Available reports:', { count: availableReports.length, reports: availableReports });
+      } catch (dirError) {
+        console.error('[Report View] Cannot list reports directory:', dirError.message);
+      }
       return res.status(404).json({
         status: 'error',
-        message: 'Report not found'
+        message: 'Report not found',
+        requestedFile: reportFilename,
+        lookingAt: reportPath
       });
     }
 
     // Read and return the HTML report
+    console.log('[Report View] Reading report file', { reportPath, size: fs.statSync(reportPath).size });
     const htmlContent = readReport(reportFilename);
 
+    console.log('[Report View] Report served successfully', { reportFilename, size: htmlContent.length });
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
     res.send(htmlContent);
   } catch (error) {
-    console.error('Error reading report:', error);
+    console.error('[Report View] Error reading report:', {
+      error: error.message,
+      stack: error.stack,
+      filename: req.params.reportFilename
+    });
     res.status(500).json({
       status: 'error',
       message: 'Failed to read report',

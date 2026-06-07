@@ -10,11 +10,16 @@ function createError(status, message) {
 }
 
 async function handleGenerateTestCases(req, res, next) {
-  const ticketId = req.query.ticketId;
+  const ticketId = (req.body && req.body.ticketId) || req.query.ticketId;
+  const jiraConfig = {
+    baseUrl: req.body?.baseUrl || req.query?.baseUrl,
+    email: req.body?.email || req.query?.email,
+    apiToken: req.body?.apiToken || req.query?.apiToken
+  };
 
   if (!ticketId) {
     console.warn('[TCG Controller] Missing ticketId parameter');
-    return res.status(400).json({ error: 'Missing ticketId query parameter.' });
+    return res.status(400).json({ error: 'Missing ticketId parameter.' });
   }
 
   console.log('[TCG Controller] Test case generation request started', {
@@ -23,7 +28,7 @@ async function handleGenerateTestCases(req, res, next) {
   });
 
   try {
-    const result = await generateTestCasesForTicket(ticketId);
+    const result = await generateTestCasesForTicket(ticketId, jiraConfig);
     console.log('[TCG Controller] Test case generation completed successfully', {
       ticketId,
       fromCache: result.fromCache,
@@ -43,15 +48,21 @@ async function handleGenerateTestCases(req, res, next) {
 }
 
 async function handleVerifyJira(req, res, next) {
+  const jiraConfig = {
+    baseUrl: req.body?.baseUrl || req.query?.baseUrl,
+    email: req.body?.email || req.query?.email,
+    apiToken: req.body?.apiToken || req.query?.apiToken
+  };
+
   try {
-    const result = await verifyJiraCredentials();
+    const result = await verifyJiraCredentials(jiraConfig);
     res.json(result);
   } catch (error) {
     next(error);
   }
 }
 
-async function generateTestCasesForTicket(ticketId) {
+async function generateTestCasesForTicket(ticketId, jiraConfig = {}) {
   const cacheKey = ticketId.toUpperCase();
   
   const cached = getCachedResponse(cacheKey);
@@ -62,7 +73,7 @@ async function generateTestCasesForTicket(ticketId) {
   console.log('[TCG Service] Cache miss - fetching from JIRA', { ticketId: cacheKey });
 
   console.log('[TCG Service] Fetching JIRA story', { ticketId: cacheKey, timestamp: new Date().toISOString() });
-  const jiraStory = await fetchJiraStory(cacheKey);
+  const jiraStory = await fetchJiraStory(cacheKey, jiraConfig);
   console.log('[TCG Service] JIRA story fetched', {
     ticketId: cacheKey,
     summary: jiraStory.summary,

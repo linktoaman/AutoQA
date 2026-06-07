@@ -1,0 +1,28 @@
+Test Case 1 (SCRUM-2-API-001)
+Title: Verify successful retrieval of all products using GET method
+Type: functional
+
+Preconditions:
+The API endpoint https://qa.abcorp.com/v1/getAllProducts is accessible and functional.
+
+Steps:
+1. Send a GET request to https://qa.abcorp.com/v1/getAllProducts
+2. Verify the response status code.
+
+Expected Result:
+The API returns a status code 200 OK, and the response body contains an array of product objects.
+
+------------------------------------------------------------
+Test Case 2 (SCRUM-2-API-002)
+Title: Verify failure when accessing non-existent endpoint or invalid parameters
+Type: functional
+
+Preconditions:
+API access is required.
+
+Steps:
+1. Attempt to send a GET request to a non-existent path, e.g., https://qa.abcorp.com/v1/getAllProducts/invalid
+2. Alternatively, send a GET request with malformed or invalid parameters.
+
+Expected Result:
+The API returns an appropriate client error status code (e.g., 404 Not Found or 400 Bad Request) with a descriptive error message.

@@ -1,13 +1,19 @@
 // ============================================
-// Ollama Service - AI Test Case Generation
+// AI Service - Test Case Generation
 // ============================================
-// This service communicates with local Ollama to generate test cases for APIs.
+// This service communicates with the configured AI provider to generate test cases.
+// Supported providers: Ollama (default), ChatGPT via OpenAI, or Gemini.
 
 const axios = require('axios');
+const { callChatGPT } = require('./chatgptService');
+const { callGemini } = require('./geminiService');
 
-// Get Ollama configuration from environment
+// Get AI provider configuration from environment
+const AI_PROVIDER = process.env.AI_PROVIDER || 'ollama';
 const OLLAMA_API_URL = process.env.OLLAMA_API_URL || 'http://localhost:11434/api/generate';
 const OLLAMA_MODEL = process.env.OLLAMA_MODEL || 'gemma4:e4b';
+const useChatGPT = AI_PROVIDER === 'chatgpt';
+const useGemini = AI_PROVIDER === 'gemini';
 
 /**
  * Generate test cases for a single API endpoint using Ollama
@@ -21,8 +27,8 @@ async function generateTestCases(api) {
     // Create a prompt for Ollama asking to generate test cases
     const prompt = createTestGenerationPrompt(api);
 
-    // Call Ollama API to generate test cases
-    const testCases = await callOllama(prompt);
+    // Call AI provider to generate test cases
+    const testCases = await callAI(prompt);
 
     // Parse the response into structured test cases
     const parsedTests = parseTestCases(testCases, api);
@@ -66,7 +72,6 @@ async function callOllama(prompt) {
   try {
     console.log(`Calling Ollama at ${OLLAMA_API_URL}...`);
 
-    // Make request to Ollama API
     const response = await axios.post(OLLAMA_API_URL, {
       model: OLLAMA_MODEL,
       prompt: prompt,
@@ -85,6 +90,16 @@ async function callOllama(prompt) {
     console.error('Ollama API error:', error.message);
     throw new Error(`Failed to generate test cases with Ollama: ${error.message}`);
   }
+}
+
+async function callAI(prompt) {
+  if (useChatGPT) {
+    return callChatGPT(prompt);
+  }
+  if (useGemini) {
+    return callGemini(prompt);
+  }
+  return callOllama(prompt);
 }
 
 /**
@@ -234,6 +249,7 @@ function generateDefaultTestCases(api) {
 module.exports = {
   generateTestCases,
   createTestGenerationPrompt,
+  callAI,
   callOllama,
   parseTestCases,
   generateDefaultTestCases

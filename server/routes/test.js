@@ -78,7 +78,7 @@ router.post('/run', async (req, res) => {
           message: `Generating test cases for ${api.name}...`
         });
 
-        // Step 1: Generate test cases using Ollama
+        // Step 1: Generate test cases using configured AI provider
         console.log(`  → Generating test cases...`);
         const testCases = await generateTestCases(api);
 
