@@ -184,36 +184,63 @@ ${injectedActions}
 async function executeSeleniumScript(scriptContent, sessionId) {
   return new Promise(async (resolve, reject) => {
     try {
+      // Ensure the script launches Chrome in headless mode and with safe flags for containerized environments
+      const normalizedScript = ensureHeadlessChromeFlags(scriptContent);
+
       const scriptPath = path.join(__dirname, '..', 'uploads', `script-${sessionId}.js`);
-      fs.writeFileSync(scriptPath, scriptContent, 'utf8');
+      fs.writeFileSync(scriptPath, normalizedScript, 'utf8');
+
+      // Optional debug: dump the generated script to logs when enabled (useful in Render)
+      if (process.env.DEBUG_SELENIUM_SCRIPT === 'true') {
+        try {
+          console.log('--- BEGIN GENERATED SELENIUM SCRIPT ---');
+          console.log(normalizedScript);
+          console.log('--- END GENERATED SELENIUM SCRIPT ---');
+        } catch (err) {
+          console.error('Failed to log generated script:', err && err.message);
+        }
+      }
 
       const logs = [];
       const screenshots = [];
       const startTime = Date.now();
 
+      // Execute script with Node.js. Pass through CHROME_BIN (if provided) so child process
+      // and chromedriver can find the Chrome/Chromium binary in container environments.
+      const childEnv = Object.assign({}, process.env);
+      if (!childEnv.CHROME_BIN && (process.env.CHROME_BIN || process.env.CHROMIUM_PATH || process.env.PUPPETEER_EXECUTABLE_PATH)) {
+        childEnv.CHROME_BIN = process.env.CHROME_BIN || process.env.CHROMIUM_PATH || process.env.PUPPETEER_EXECUTABLE_PATH;
+      }
+      if (childEnv.CHROME_BIN) console.log('Using CHROME_BIN for Selenium child process:', childEnv.CHROME_BIN);
+
+      // Allow a longer timeout for Selenium scripts in slower CI/container environments
+      const scriptTimeout = parseInt(process.env.SELENIUM_SCRIPT_TIMEOUT_MS || '180000', 10);
+
       // Execute script with Node.js
-      const process = spawn('node', [scriptPath], {
+      const childProc = spawn('node', [scriptPath], {
         cwd: path.join(__dirname, '..', '..'),
-        timeout: 60000
+        timeout: scriptTimeout,
+        env: childEnv
       });
 
-      process.stdout.on('data', (data) => {
-        const output = data.toString().trim();
+      childProc.stdout.on('data', (data) => {
+        const output = data.toString();
         if (output) {
           logs.push(output);
+          // print without trimming to preserve chromedriver messages
           console.log('[Selenium Output]', output);
         }
       });
 
-      process.stderr.on('data', (data) => {
-        const error = data.toString().trim();
+      childProc.stderr.on('data', (data) => {
+        const error = data.toString();
         if (error) {
           logs.push(`[Error] ${error}`);
           console.error('[Selenium Error]', error);
         }
       });
 
-      process.on('close', (code) => {
+      childProc.on('close', (code) => {
         const executionTime = Date.now() - startTime;
         
         // Collect captured screenshots
@@ -258,6 +285,7 @@ async function executeSeleniumScript(scriptContent, sessionId) {
         if (code === 0) {
           resolve(result);
         } else {
+          console.error('Selenium child process exited with code', code, 'logs:', logs.join('\n'));
           resolve(result); // Still return results even if exit code is non-zero
         }
 
@@ -269,7 +297,7 @@ async function executeSeleniumScript(scriptContent, sessionId) {
         }
       });
 
-      process.on('error', (err) => {
+      childProc.on('error', (err) => {
         console.error('Failed to execute Selenium script:', err.message);
         reject(new Error(`Selenium execution failed: ${err.message}`));
       });
@@ -278,6 +306,42 @@ async function executeSeleniumScript(scriptContent, sessionId) {
       reject(error);
     }
   });
+}
+
+// Ensure generated scripts launch Chrome in headless mode with safe flags
+function ensureHeadlessChromeFlags(script) {
+  try {
+    if (!script || typeof script !== 'string') return script;
+
+    let modified = script;
+
+    const hasChromeRequire = /require\(['\"]selenium-webdriver\/chrome['\"]\)/.test(modified);
+    const hasOptions = /new\s+chrome\.Options\(/.test(modified);
+
+    // Inject chrome require and options after selenium-webdriver require line if missing
+    const optionsSnippet = `const chrome = require('selenium-webdriver/chrome');\nconst options = new chrome.Options();\noptions.addArguments('--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--disable-software-rasterizer', '--hide-scrollbars', '--disable-features=VizDisplayCompositor', '--window-size=1920,1080', '--remote-allow-origins=*');\n`;
+
+    if (!hasChromeRequire && /require\(['\"]selenium-webdriver['\"]\)/.test(modified)) {
+      modified = modified.replace(/(const\s+\{[\s\S]*?\}\s*=\s*require\(['\"]selenium-webdriver['\"]\);?\s*)/, `$1\n${optionsSnippet}`);
+    } else if (!hasOptions && hasChromeRequire) {
+      // If chrome require exists but options not defined, append options definition
+      modified = modified.replace(/(require\(['\"]selenium-webdriver\/chrome['\"]\);?\s*)/, `$1\nconst options = new chrome.Options();\noptions.addArguments('--headless=new', '--no-sandbox', '--disable-dev-shm-usage', '--disable-gpu', '--disable-software-rasterizer', '--hide-scrollbars', '--disable-features=VizDisplayCompositor', '--window-size=1920,1080', '--remote-allow-origins=*');\n`);
+    }
+
+    // Ensure Builder uses setChromeOptions(options) when creating Chrome driver
+    // Replace patterns like .forBrowser('chrome').build() to include .setChromeOptions(options)
+    modified = modified.replace(/\.forBrowser\(\s*['\"]chrome['\"]\s*\)\.build\(\s*\)/g, ".forBrowser('chrome').setChromeOptions(options).build()");
+    modified = modified.replace(/\.forBrowser\(\s*['\"]chrome['\"]\s*\)\.build\(\s*\);/g, ".forBrowser('chrome').setChromeOptions(options).build();");
+
+    // After driver creation, ensure the generated script sets a viewport/window size to avoid blank screenshots
+    // Insert a small helper that attempts to set the window size in both modern and older WebDriver APIs.
+    modified = modified.replace(/(const\s+driver\s*=\s*await\s+new\s+Builder\([\s\S]*?\.build\(\)\s*;)/g, `$1\ntry {\n  if (driver && driver.manage) {\n    try { await driver.manage().window().setRect({ width: 1920, height: 1080 }); } catch(e) { try { await driver.manage().window().setSize(1920, 1080); } catch(e2) {} }\n    // Give browser a moment to apply sizing and paint\n    try { await driver.sleep(500); } catch(e) { /* ignore */ }\n  }\n} catch(e) { /* ignore failures to set window size */ }`);
+
+    return modified;
+  } catch (err) {
+    console.error('ensureHeadlessChromeFlags error:', err && err.message);
+    return script;
+  }
 }
 
 async function executeAutomationWithRealSelenium(script, sessionId) {

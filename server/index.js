@@ -23,6 +23,17 @@ const tcgRoutes = require('./routes/tcg/testCaseRoutes');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// Selenium health check (production readiness)
+const { checkSeleniumBinaries } = require('./services/seleniumHealth');
+const seleniumStatus = checkSeleniumBinaries();
+app.locals.seleniumAvailable = seleniumStatus.ok;
+if (!seleniumStatus.ok) {
+  console.warn('[Selenium Health] Chrome or Chromedriver not found. Selenium-based automation may fail in production.');
+  console.warn('[Selenium Health] Details:', seleniumStatus.details);
+} else {
+  console.log('[Selenium Health] Chrome and Chromedriver detected:', seleniumStatus.details);
+}
+
 // ============================================
 // Middleware Configuration
 // ============================================
@@ -62,6 +73,15 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'success',
     message: 'QAgent Server is running!',
+    timestamp: new Date().toISOString()
+  });
+});
+
+// Selenium specific health endpoint
+app.get('/api/health/selenium', (req, res) => {
+  res.json({
+    status: app.locals.seleniumAvailable ? 'ok' : 'missing',
+    details: seleniumStatus.details,
     timestamp: new Date().toISOString()
   });
 });
