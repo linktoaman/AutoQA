@@ -15,6 +15,7 @@ const uploadRoutes = require('./routes/upload');
 const testRoutes = require('./routes/test');
 const reportRoutes = require('./routes/report');
 const automationRoutes = require('./routes/automation');
+const performanceRoutes = require('./routes/performance');
 const tcgRoutes = require('./routes/tcg/testCaseRoutes');
 
 // ============================================
@@ -62,6 +63,7 @@ app.use(express.static(path.join(__dirname, '../client')));
 app.use('/api/upload', uploadRoutes);
 app.use('/api/test', testRoutes);
 app.use('/api/report', reportRoutes);
+app.use('/api/performance', performanceRoutes);
 app.use('/api/automation', automationRoutes);
 app.use('/api/tcg', tcgRoutes);
 
@@ -106,6 +108,10 @@ app.get('/tcg', (req, res) => {
 
 app.get('/automation', (req, res) => {
   res.sendFile(path.join(__dirname, '../client/automation.html'));
+});
+
+app.get('/performance', (req, res) => {
+  res.sendFile(path.join(__dirname, '../client/performance.html'));
 });
 
 // Explicit Home route (alternate to `/`) so users can visit `/home`

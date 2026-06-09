@@ -364,12 +364,11 @@
         </div>
       </div>
 
-      <!-- Coming Soon: Performance Testing -->
       <div class="module-card">
         <div class="module-header">
           <div class="module-icon">⚡</div>
           <h2>Performance Testing</h2>
-          <div class="version">Coming Soon</div>
+          <div class="version">API Load & Stress</div>
         </div>
         <div class="module-content">
           <p>Plan and run performance/load tests to validate API throughput, latency, and stability under stress.</p>
@@ -377,10 +376,10 @@
             <li>Simulate concurrent users and traffic patterns</li>
             <li>Measure latency, throughput, and error rates</li>
             <li>Exportable performance reports and charts</li>
-            <li>Integration with CI pipelines (future)</li>
+            <li>Pass/fail based on SLA thresholds</li>
           </ul>
           <div class="button-group">
-            <button class="btn btn-secondary" disabled>Coming Soon</button>
+            <a href="/performance" class="btn btn-primary">→ Open Performance</a>
           </div>
         </div>
       </div>
@@ -411,6 +410,7 @@
     console.log('%c✨ QAgent Home Page Loaded', 'color: #667eea; font-size: 16px; font-weight: bold;');
     console.log('Available modules:', {
       'API Testing': '/app',
+      'Performance Testing': '/performance',
       'Test Case Generator': '/tcg',
       'Health Check': '/api/health'
     });

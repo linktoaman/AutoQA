@@ -1,6 +1,6 @@
 # QAgent - Unified Platform
 
-> **Unified platform for API Testing and Test Case Generation using local Ollama LLM**
+> **Unified platform for API Testing and Test Case Generation using gemini-1.5-mini**
 
 ## 🎯 Overview
 
@@ -9,7 +9,7 @@ A QAgent is a comprehensive QA automation platform that combines two powerful fe
 1. **QAgent - API Testing**: Upload Postman collections and run comprehensive API tests with AI-powered validation
 2. **Test Case Generator (TCG)**: Generate structured test cases from JIRA user stories using AI analysis
 
-Both features are integrated into a single, easy-to-use platform powered by local Ollama LLM.
+Both features are integrated into a single, easy-to-use platform powered by gemini-1.5-mini.
 
 ---
 
@@ -44,7 +44,7 @@ Both features are integrated into a single, easy-to-use platform powered by loca
 
 ```bash
 # Clone the repository
-git clone https://github.com/linktoaman/QAgent.git
+git clone https://github.com/linktoaman/AutoQA/.git
 cd QAgent
 
 # Install dependencies
@@ -329,7 +329,7 @@ MIT License - See LICENSE file for details
 
 ## 🔗 Links
 
-- [GitHub Repository](https://github.com/linktoaman/QAgent)
+- [GitHub Repository](https://github.com/linktoaman/AutoQA/)
 - [Ollama](https://ollama.ai)
 - [Postman](https://www.postman.com)
 - [JIRA](https://www.atlassian.com/software/jira)
@@ -339,7 +339,7 @@ MIT License - See LICENSE file for details
 ## 📞 Support
 
 For issues and questions:
-- GitHub Issues: https://github.com/linktoaman/QAgent/issues
+- GitHub Issues: https://github.com/linktoaman/AutoQA//issues
 - Email: your-email@example.com
 
 ---

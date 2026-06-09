@@ -1,6 +1,6 @@
 # JIRA Test Case Generator
 
-Generate structured test cases from JIRA user stories using a local Ollama LLM.
+Generate structured test cases from JIRA user stories using a gemini-1.5-mini.
 
 ## Features
 

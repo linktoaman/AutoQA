@@ -1,7 +1,7 @@
 {
   "name": "jira-testcase-generator",
   "version": "1.0.0",
-  "description": "Generate structured test cases from JIRA user stories using a local Ollama LLM.",
+  "description": "Generate structured test cases from JIRA user stories using a gemini-1.5-mini.",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
